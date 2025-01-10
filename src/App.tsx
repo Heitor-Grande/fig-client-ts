@@ -8,6 +8,7 @@ import ControleDeCaixa from "./pages/menuPrincipal/menu/controleCaixa/controleDe
 import FormularioControleCaixa from "./pages/menuPrincipal/menu/controleCaixa/formularioControleCaixa";
 import MeusArquivos from "./pages/menuPrincipal/menu/meusArquivos/meusArquivos";
 import MinhaConta from "./pages/menuPrincipal/menu/minhaConta/minhaConta";
+import CadConta from "./pages/cadConta/cadConta";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/home/minha/conta" element={<MinhaConta />} />
           </Route>
           <Route path="/" element={<Login />} />
+          <Route path="/cad/nova/conta" element={<CadConta />} />
         </Routes>
       </BrowserRouter>
     </>
