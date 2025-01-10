@@ -8,7 +8,7 @@ interface typeOpcoesModalOpcoes {
 }
 interface typeModalOpcoes {
     titulo: string
-    mensagem: string,
+    mensagem?: string,
     arrayOpcoes: typeOpcoesModalOpcoes[]
     fecharModal: () => void
     mostrar: boolean

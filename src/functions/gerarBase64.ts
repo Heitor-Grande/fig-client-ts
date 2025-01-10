@@ -6,7 +6,7 @@ interface file {
     name: string,
     type: string
 }
-function GerarBase64(array: FileList) {
+function GerarBase64(array: FileList): Promise<file[]> {
     return new Promise(function (resolve, reject) {
         try {
             const ListaFilesBase64: file[] = []

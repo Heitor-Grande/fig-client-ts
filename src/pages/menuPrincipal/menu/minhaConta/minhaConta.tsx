@@ -12,36 +12,45 @@ import GerarBase64 from "../../../../functions/gerarBase64";
 import Button from '@mui/material/Button';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 function MinhaConta() {
-    const [inputsConta, setInputsConta] = useState({
+    interface typeInputsConta {
+        email: string,
+        nome: string,
+        avatar: string | undefined,
+        dataCriacao: string,
+        ativo: boolean
+    }
+    const [inputsConta, setInputsConta] = useState<typeInputsConta>({
         email: "",
         nome: "",
         avatar: "",
         dataCriacao: "",
         ativo: true
     })
-    function setEmailConta(e) {
+    function setEmailConta(e: React.ChangeEvent<HTMLInputElement>) {
         setInputsConta({
             ...inputsConta,
             email: e.target.value
         })
     }
-    function setNomeConta(e) {
+    function setNomeConta(e: React.ChangeEvent<HTMLInputElement>) {
         setInputsConta({
             ...inputsConta,
             nome: e.target.value
         })
     }
-    async function setAvatarConta(e) {
+    async function setAvatarConta(e: React.ChangeEvent<HTMLInputElement>) {
         const arrayArquivo = e.target.files
-        GerarBase64(arrayArquivo).then(function (arrayBase64) {
-            setInputsConta({
-                ...inputsConta,
-                avatar: arrayBase64[0].fileBase64
+        if (arrayArquivo) {
+            GerarBase64(arrayArquivo).then(function (arrayBase64) {
+                setInputsConta({
+                    ...inputsConta,
+                    avatar: arrayBase64[0].fileBase64 && typeof (arrayBase64[0].fileBase64) == "string" ? arrayBase64[0].fileBase64 : ""
+                })
+            }).catch(function (erro) {
+                setShowModalCarregando(false)
+                toast.error(erro.message)
             })
-        }).catch(function (erro) {
-            setShowModalCarregando(false)
-            toast.error(erro.message)
-        })
+        }
     }
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
     const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
@@ -68,7 +77,7 @@ function MinhaConta() {
             setShowModalCarregando(false)
         })
     }
-    function AtualizarConta(e) {
+    function AtualizarConta(e: React.FormEvent<HTMLFormElement>) {
         if (e) {
             e.preventDefault()
         }

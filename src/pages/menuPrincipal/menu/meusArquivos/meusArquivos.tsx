@@ -33,7 +33,7 @@ function MeusArquivos() {
             headerName: "Tipo",
             width: 100,
             type: "string",
-            cellClassName: function (objColuna) {
+            cellClassName: function (objColuna: any) {
                 if (objColuna.formattedValue == "S") {
                     return 'bg-danger text-white text-center'
                 }
@@ -47,9 +47,10 @@ function MeusArquivos() {
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
     const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
     function AbrirInputFile() {
-        document.querySelector("#anexarArquivo").click()
+        const inputAnexar = document.querySelector("#anexarArquivo") as HTMLInputElement
+        inputAnexar.click()
     }
-    function fazerUpload(uploads) {
+    function fazerUpload(uploads: any) {
         setShowModalLoading(true)
         const arrayDeFiles = uploads.target.files
         GerarBase64(arrayDeFiles).then(function (arrayDeFilesEmBase64) {
@@ -87,11 +88,11 @@ function MeusArquivos() {
         })
     }
     const [showModalOpcoes, setShowModalOpcoes] = useState(false)
-    const [opcoes, setOpcoes] = useState([])
+    const [opcoes, setOpcoes] = useState<any[]>([])
     function manipularModalOpcoes() {
         setShowModalOpcoes(!showModalOpcoes)
     }
-    function DeletarArquivo(arquivo) {
+    function DeletarArquivo(arquivo: any) {
         setShowModalLoading(true)
         axios.delete(`${process.env.REACT_APP_API_URL}/deletar/arquivo/usuario/${idUsuario}/${arquivo.id}`, {
             headers: {
@@ -107,7 +108,7 @@ function MeusArquivos() {
             setShowModalLoading(false)
         })
     }
-    function onRowClick(uploads) {
+    function onRowClick(uploads: any) {
         const dadosLinha = uploads.row
         setOpcoes([
             {
@@ -160,7 +161,7 @@ function MeusArquivos() {
                             <VisualizarAnexos
                                 onRowClick={onRowClick}
                                 anexos={rows}
-                                columns={columns}
+                                modal={false}
                             />
                         </div>
                     </div>

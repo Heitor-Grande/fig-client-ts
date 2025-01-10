@@ -3,10 +3,10 @@ import Table from "../table/table"
 import bytesParaKB from "../../functions/bytesParaKB"
 import { isNumber } from "@mui/x-data-grid/internals"
 interface typeVisualizarAnexos {
-    mostrar: boolean
+    mostrar?: boolean
     onRowClick: (dados: any) => void
-    fecharModal: () => void
-    anexos: []
+    fecharModal?: () => void
+    anexos: any
     modal: boolean
 }
 function VisualizarAnexos(
