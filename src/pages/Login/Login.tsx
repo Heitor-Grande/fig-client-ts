@@ -48,7 +48,7 @@ function Login() {
                 navigate("/home/principal")
                 setCarregando(false)
             }).catch(function (erro) {
-                toast.error(erro.response.data.message || erro.message || erro.statusText)
+                toast.error(erro.response.data.message || erro.message)
                 setCarregando(false)
             })
         }
@@ -74,7 +74,7 @@ function Login() {
             navigate("/home/principal")
             setCarregando(false)
         }).catch(function (erro) {
-            toast.error(erro.response.data.message || erro.message || erro.statusText)
+            toast.error(erro.response.data.message || erro.message)
             setCarregando(false)
         })
     }
