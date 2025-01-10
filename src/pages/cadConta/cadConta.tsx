@@ -19,7 +19,7 @@ function CadConta() {
             }).catch(function (erro) {
 
                 setCarregando(false)
-                toast.error(erro.response.data || erro.message || erro.statusText)
+                toast.error(erro.response.data.message || erro.message)
             })
         }
     }, [])
@@ -50,7 +50,7 @@ function CadConta() {
                     toast.success(resposta.data)
                 }).catch(function (error) {
                     setCarregando(false)
-                    toast.error(error.response.data || error.statusText || error.message)
+                    toast.error(error.response.data || error.message)
                     if (error.response.status == 400) {
                         setTimeout(() => {
                             navigate("/")
