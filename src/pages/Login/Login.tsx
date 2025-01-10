@@ -33,7 +33,7 @@ function Login() {
                 setCarregando(false)
             }).catch(function (erro) {
                 setCarregando(false)
-                toast.error(erro.response.data || erro.message || erro.statusText)
+                toast.error(erro.response.data.message || erro.message)
             })
         }
         //faz login automatico
@@ -240,7 +240,7 @@ function Login() {
                     </div>
                 </div>
             </div>
-            <ModalLoad carregando={carregando} mensagem="Carregando..."/>
+            <ModalLoad carregando={carregando} mensagem="Carregando..." />
             <RecSenha mostrar={mostrarModalRecSenha} fecharModal={manipularModalRecSenha} />
             <Footer />
         </div>
