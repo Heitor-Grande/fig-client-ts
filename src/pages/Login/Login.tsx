@@ -56,7 +56,7 @@ function Login() {
     function FazerLogin(eventoSubmit: React.FormEvent<HTMLFormElement>) {
         eventoSubmit.preventDefault()
         setCarregando(true)
-        axios.post(`${process.env.REACT_APP_API_URL}/realizar/login`, inputsLogin, {
+        axios.post(`${process.env.REACT_APP_API_URL}/login/realizar/login`, inputsLogin, {
             headers: {
                 Authorization: sessionStorage.getItem("tokenPublic")
             }
