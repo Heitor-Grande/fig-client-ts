@@ -37,7 +37,7 @@ function CadConta() {
                 email
             }
             if (senha == senhaConfirmar) {
-                axios.post(process.env.REACT_APP_API_URL + "/criar/novo/precad", dados, {
+                axios.post(process.env.REACT_APP_API_URL + "/cad-conta/criar/novo/precad", dados, {
                     headers: {
                         Authorization: token
                     }
@@ -48,9 +48,12 @@ function CadConta() {
                     setSenhaConfirmar("")
                     setEmail("")
                     toast.success(resposta.data)
+                    setTimeout(() => {
+                        window.location.href = "/"
+                    }, 2000)
                 }).catch(function (error) {
                     setCarregando(false)
-                    toast.error(error.response.data || error.message)
+                    toast.error(error.response.data.message || error.message)
                     if (error.response.status == 400) {
                         setTimeout(() => {
                             navigate("/")
