@@ -39,7 +39,7 @@ function Login() {
         //faz login automatico
         if (localStorage.getItem("tokenLogin")) {
             setCarregando(true)
-            axios.get(`${process.env.REACT_APP_API_URL}/verifica-login/logar/login/usuario`, {
+            axios.get(`${process.env.REACT_APP_API_URL}/auto-login/logar/login/usuario`, {
                 headers: {
                     Authorization: localStorage.getItem("tokenLogin")
                 }
