@@ -39,7 +39,7 @@ function Login() {
         //faz login automatico
         if (localStorage.getItem("tokenLogin")) {
             setCarregando(true)
-            axios.get(`${process.env.REACT_APP_API_URL}/auto-login/logar/login/usuario`, {
+            axios.get(`${process.env.REACT_APP_API_URL}/autologin/logar/login/usuario`, {
                 headers: {
                     Authorization: localStorage.getItem("tokenLogin")
                 }
@@ -63,7 +63,6 @@ function Login() {
         }).then(function (resposta) {
             const tokenLogin = resposta.data.tokenLogin
             const usuario = resposta.data.usuario
-            console.log(resposta.data)
             if (inputsLogin.salvarLogin) {
                 localStorage.setItem("tokenLogin", tokenLogin)
                 localStorage.setItem("idUsuario", usuario.id_usuario)
@@ -75,6 +74,7 @@ function Login() {
             navigate("/home/principal")
             setCarregando(false)
         }).catch(function (erro) {
+            console.log(erro)
             toast.error(erro.response.data.message || erro.message)
             setCarregando(false)
         })
