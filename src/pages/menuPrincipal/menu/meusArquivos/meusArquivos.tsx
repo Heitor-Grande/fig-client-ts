@@ -12,7 +12,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 function MeusArquivos() {
     const [rows, setRows] = useState([])
-    const columns = [
+    /*const columns = [
         {
             field: "titulo",
             headerName: "Título",
@@ -42,7 +42,7 @@ function MeusArquivos() {
                 }
             }
         }
-    ]
+    ]*/
     const [showModalLoading, setShowModalLoading] = useState(false)
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
     const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
@@ -57,12 +57,12 @@ function MeusArquivos() {
             const dados = {
                 arquivosImportados: arrayDeFilesEmBase64
             }
-            axios.post(`${process.env.REACT_APP_API_URL}/novo/upload/arquivos/${idUsuario}`, dados, {
+            axios.post(`${process.env.REACT_APP_API_URL}/meus-arquivos/novo/upload/arquivos/${idUsuario}`, dados, {
                 headers: {
                     Authorization: token
                 }
             }).then(function (resposta) {
-                toast.success(resposta.data.message)
+                toast.success(resposta.data)
                 carregarArquivos()
             }).catch(function (erro) {
                 toast.error(erro.response.data.message || erro.message)
@@ -75,12 +75,12 @@ function MeusArquivos() {
     }
     function carregarArquivos() {
         setShowModalLoading(true)
-        axios.get(`${process.env.REACT_APP_API_URL}/carregar/meus/uploads/${idUsuario}`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/meus-arquivos/carregar/meus/uploads/${idUsuario}`, {
             headers: {
                 Authorization: token
             }
         }).then(function (resposta) {
-            setRows(resposta.data.arquivos)
+            setRows(resposta.data)
             setShowModalLoading(false)
         }).catch(function (erro) {
             toast.error(erro.response.data.message || erro.message)
@@ -94,12 +94,12 @@ function MeusArquivos() {
     }
     function DeletarArquivo(arquivo: any) {
         setShowModalLoading(true)
-        axios.delete(`${process.env.REACT_APP_API_URL}/deletar/arquivo/usuario/${idUsuario}/${arquivo.id}`, {
+        axios.delete(`${process.env.REACT_APP_API_URL}/meus-arquivos/deletar/arquivo/usuario/${idUsuario}/${arquivo.id}`, {
             headers: {
                 Authorization: token
             }
         }).then(function (resposta) {
-            toast.success(resposta.data.message)
+            toast.success(resposta.data)
             carregarArquivos()
             setShowModalOpcoes(false)
             setShowModalLoading(false)
