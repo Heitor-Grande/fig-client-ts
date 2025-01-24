@@ -57,12 +57,12 @@ function MinhaConta() {
     const [showModalCarregando, setShowModalCarregando] = useState(false)
     function CarregarInformacoesUsuario() {
         setShowModalCarregando(true)
-        axios.get(`${process.env.REACT_APP_API_URL}/carregar/usuario/${idUsuario}`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/usuario/carregar/usuario/${idUsuario}`, {
             headers: {
                 Authorization: token
             }
         }).then(function (resposta) {
-            const usuario = resposta.data.usuario
+            const usuario = resposta.data
             setInputsConta({
                 ...inputsConta,
                 nome: usuario.nome,
@@ -73,6 +73,7 @@ function MinhaConta() {
             })
             setShowModalCarregando(false)
         }).catch(function (erro) {
+            console.log(erro)
             toast.error(erro.response.data.message || erro.message)
             setShowModalCarregando(false)
         })

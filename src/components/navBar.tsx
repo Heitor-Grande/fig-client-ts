@@ -33,12 +33,12 @@ function NavBar() {
     function CarregarInformacoesUsuario() {
         setShowModalCarregando(true)
         const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
-        axios.get(`${process.env.REACT_APP_API_URL}/carregar/usuario/${idUsuario}`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/usuario/carregar/usuario/${idUsuario}`, {
             headers: {
                 Authorization: token
             }
         }).then(function (resposta) {
-            const usuario = resposta.data.usuario
+            const usuario = resposta.data
             setInputsUsuario({
                 ...inputsUsuario,
                 nome: usuario.nome,
