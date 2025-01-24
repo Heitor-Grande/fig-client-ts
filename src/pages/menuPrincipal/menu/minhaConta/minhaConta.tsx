@@ -73,25 +73,22 @@ function MinhaConta() {
             })
             setShowModalCarregando(false)
         }).catch(function (erro) {
-            console.log(erro)
             toast.error(erro.response.data.message || erro.message)
             setShowModalCarregando(false)
         })
     }
     function AtualizarConta(e: React.FormEvent<HTMLFormElement>) {
-        if (e) {
-            e.preventDefault()
-        }
+        e.preventDefault()
         setShowModalCarregando(true)
         const dados = {
             inputsConta
         }
-        axios.put(`${process.env.REACT_APP_API_URL}/atualizar/minha/conta/${idUsuario}`, dados, {
+        axios.put(`${process.env.REACT_APP_API_URL}/usuario/atualizar/minha/conta/${idUsuario}`, dados, {
             headers: {
                 Authorization: token
             }
         }).then(function (resposta) {
-            toast.success(resposta.data.message)
+            toast.success(resposta.data)
             CarregarInformacoesUsuario()
             setShowModalCarregando(false)
         }).catch(function (erro) {
@@ -151,9 +148,7 @@ function MinhaConta() {
                                                     label={inputsConta.ativo == true ? "Ativo" : "Bloqueado"} />
                                             </FormGroup>
                                         </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-sm col-md-6 col-lg-6">
+                                        <div className="col-sm col-md-6 col-lg-4">
                                             <InputComponente
                                                 label={"Nome"}
                                                 tipo={"text"}
@@ -165,7 +160,7 @@ function MinhaConta() {
                                                 readOnly={false}
                                             />
                                         </div>
-                                        <div className="col-sm col-md-6 col-lg-6">
+                                        <div className="col-sm col-md-6 col-lg-4">
                                             <InputComponente
                                                 label={"E-mail"}
                                                 tipo={"email"}
@@ -179,7 +174,7 @@ function MinhaConta() {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-sm col-md-6 col-lg-6 text-end mt-2">
+                                        <div className="col-sm col-md-6 col-lg-12 text-end mt-2">
                                             <Button type="submit" sx={{ width: "100%" }} variant="contained" color="primary" size="small">
                                                 Salvar
                                             </Button>
