@@ -6,6 +6,7 @@ import formatarDinheiro from "../../functions/formatarDinheiro"
 import ModalLoad from '../../components/ModalLoad';
 import axios from "axios"
 import { toast } from 'react-toastify';
+import { PieChart } from '@mui/x-charts/PieChart';
 function Principal() {
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
     const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
@@ -94,6 +95,26 @@ function Principal() {
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                            <br />
+                            <div className="container-fluid">
+                                <div className="row">
+                                    <div className="col-sm col-md-12 col-lg-12">
+                                        <PieChart
+                                            colors={["red", "blue"]}
+                                            series={[
+                                                {
+                                                    data: [
+                                                        { id: 0, value: 10, label: 'M. Saída' },
+                                                        { id: 1, value: 15, label: 'M. Entrada' },
+                                                    ],
+                                                },
+                                            ]}
+                                            width={400}
+                                            height={200}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
