@@ -100,7 +100,6 @@ function Principal() {
                             <div className="container-fluid">
                                 <div className="row">
                                     <div className="col-sm col-md-12 col-lg-12">
-                                        {/*
                                             <PieChart
                                                 colors={["red", "blue"]}
                                                 series={[
@@ -114,7 +113,6 @@ function Principal() {
                                                 width={250}
                                                 height={100}
                                             />
-                                        */}
                                     </div>
                                 </div>
                             </div>
