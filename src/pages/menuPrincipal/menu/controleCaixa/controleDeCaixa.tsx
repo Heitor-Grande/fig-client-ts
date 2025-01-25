@@ -53,7 +53,7 @@ function ControleDeCaixa() {
     const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
     function carregarMovimentos() {
         setShowModalLoading(true)
-        axios.get(`${process.env.REACT_APP_API_URL}/carregar/movimentos/caixa/${idUsuario}`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/controle-caixa/carregar/movimentos/caixa/${idUsuario}`, {
             headers: {
                 Authorization: token
             }

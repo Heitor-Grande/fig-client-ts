@@ -61,15 +61,15 @@ function FormularioControleCaixa() {
             id_usuario: idUsuario,
             arquivosAnexados: arquivosAnexados
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/criar/novo/movimento`, dados, {
+        axios.post(`${process.env.REACT_APP_API_URL}/controle-caixa/criar/novo/movimento`, dados, {
             headers: {
                 Authorization: token
             }
         }).then(function (resposta) {
-            toast.success(resposta.data.message)
+            toast.success(resposta.data)
             setTimeout(() => {
                 window.location.href = '/home/controle/caixa'
-            }, 2000)
+            }, 1000)
             setShowModalLoading(false)
         }).catch(function (erro) {
             toast.error(erro.response.data.message || erro.message)
@@ -78,7 +78,7 @@ function FormularioControleCaixa() {
     }
     function CarregarMovimento() {
         setShowModalLoading(true)
-        axios.get(`${process.env.REACT_APP_API_URL}/carregar/detalhes/movimento/${idUsuario}/${params.id}`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/controle-caixa/carregar/detalhes/movimento/${idUsuario}/${params.id}`, {
             headers: {
                 Authorization: token
             }
@@ -105,15 +105,15 @@ function FormularioControleCaixa() {
             inputsMovimento: inputsMovimento,
             id_usuario: idUsuario
         }
-        axios.put(`${process.env.REACT_APP_API_URL}/atualizar/movimento/${idUsuario}/${params.id}`, dados, {
+        axios.put(`${process.env.REACT_APP_API_URL}/controle-caixa/atualizar/movimento/${idUsuario}/${params.id}`, dados, {
             headers: {
                 Authorization: token
             }
         }).then(function (resposta) {
-            toast.success(resposta.data.message)
+            toast.success(resposta.data)
             setTimeout(() => {
                 window.location.href = '/home/controle/caixa'
-            }, 2000)
+            }, 1000)
             setShowModalLoading(false)
         }).catch(function (erro) {
             toast.error(erro.response.data.message || erro.message)
@@ -141,16 +141,16 @@ function FormularioControleCaixa() {
     function ExcluirMovimento() {
         manipularModalExcluir()
         setShowModalLoading(true)
-        axios.delete(`${process.env.REACT_APP_API_URL}/excluir/movimento/${idUsuario}/${params.id}`, {
+        axios.delete(`${process.env.REACT_APP_API_URL}/controle-caixa/excluir/movimento/${idUsuario}/${params.id}`, {
             headers: {
                 Authorization: token
             }
         }).then(function (resposta) {
-            toast.success(resposta.data.message)
+            toast.success(resposta.data)
+            setShowModalLoading(false)
             setTimeout(() => {
                 window.location.href = '/home/controle/caixa'
-            }, 2000);
-            setShowModalLoading(false)
+            }, 1000)
         }).catch(function (erro) {
             toast.error(erro.response.data.message || erro.message)
             setShowModalLoading(false)
@@ -160,13 +160,6 @@ function FormularioControleCaixa() {
     function AbrirInputFile() {
         const anexarInput = document.querySelector("#anexarArquivo") as HTMLInputElement
         anexarInput.click()
-    }
-    interface file {
-        id: number,
-        fileBase64: string | ArrayBuffer | null,
-        size: number,
-        name: string,
-        type: string
     }
     function importarArquivos(e: React.ChangeEvent<HTMLInputElement>) {
         setShowModalLoading(true)
@@ -198,12 +191,12 @@ function FormularioControleCaixa() {
         const dados = {
             arquivosAnexados: arrayDeFiles
         }
-        axios.put(`${process.env.REACT_APP_API_URL}/upload/arquivo/movimento/${params.id}/${idUsuario}`, dados, {
+        axios.put(`${process.env.REACT_APP_API_URL}/controle-caixa/upload/arquivo/movimento/${params.id}/${idUsuario}`, dados, {
             headers: {
                 Authorization: token
             }
         }).then(function (resposta) {
-            toast.success(resposta.data.message)
+            toast.success(resposta.data)
             CarregarMovimento()
         }).catch(function (erro) {
             toast.error(erro.response.data.message || erro.message)
@@ -224,12 +217,12 @@ function FormularioControleCaixa() {
         }
         else if (params.acao == "editar" && params.id != "0") {
             setShowModalLoading(true)
-            axios.delete(`${process.env.REACT_APP_API_URL}/deletar/arquivo/movimento/${params.id}/${anexo.id}/${idUsuario}`, {
+            axios.delete(`${process.env.REACT_APP_API_URL}/controle-caixa/deletar/arquivo/movimento/${params.id}/${anexo.id}/${idUsuario}`, {
                 headers: {
                     Authorization: token
                 }
             }).then(function (resposta) {
-                toast.success(resposta.data.message)
+                toast.success(resposta.data)
                 setShowModalOpcoes(false)
                 CarregarMovimento()
                 setShowModalLoading(false)

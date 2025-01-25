@@ -100,19 +100,21 @@ function Principal() {
                             <div className="container-fluid">
                                 <div className="row">
                                     <div className="col-sm col-md-12 col-lg-12">
-                                        <PieChart
-                                            colors={["red", "blue"]}
-                                            series={[
-                                                {
-                                                    data: [
-                                                        { id: 0, value: 10, label: 'M. Saída' },
-                                                        { id: 1, value: 15, label: 'M. Entrada' },
-                                                    ],
-                                                },
-                                            ]}
-                                            width={400}
-                                            height={200}
-                                        />
+                                        {/*
+                                            <PieChart
+                                                colors={["red", "blue"]}
+                                                series={[
+                                                    {
+                                                        data: [
+                                                            { id: 0, value: 10, label: 'M. Saída' },
+                                                            { id: 1, value: 15, label: 'M. Entrada' },
+                                                        ],
+                                                    },
+                                                ]}
+                                                width={250}
+                                                height={100}
+                                            />
+                                        */}
                                     </div>
                                 </div>
                             </div>
