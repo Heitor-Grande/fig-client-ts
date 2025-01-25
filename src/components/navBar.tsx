@@ -71,9 +71,6 @@ function NavBar() {
                     </a>
                     <div className="row">
                         <div className="col-sm col-md col-lg d-flex">
-                            <Badge badgeContent={4} color="primary">
-                                <MailIcon sx={{ cursor: "pointer" }} color="disabled" />
-                            </Badge>
                             <Stack sx={{ cursor: "pointer" }} className="text-center" direction="row" spacing={2}>
                                 <Avatar alt="Remy Sharp"
                                     src={inputsUsuario.avatar}
