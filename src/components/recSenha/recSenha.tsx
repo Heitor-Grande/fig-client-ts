@@ -25,7 +25,7 @@ function RecSenha({ mostrar, fecharModal }: tipoRecSenha) {
         const dados = {
             email: emailRecuperacao
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/enviar/email/recuperacao/senha`, dados, {
+        axios.post(`${process.env.REACT_APP_API_URL}/recsenha-usuario/enviar/email/recuperacao/senha`, dados, {
             headers: {
                 Authorization: token
             }
@@ -51,7 +51,7 @@ function RecSenha({ mostrar, fecharModal }: tipoRecSenha) {
             token: sessionStorage.getItem("tokenRecSenha"),
             codigo: codigo
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/validar/codigo/recuperacao`, dados, {
+        axios.post(`${process.env.REACT_APP_API_URL}/recsenha-usuario/validar/codigo/recuperacao`, dados, {
             headers: {
                 Authorization: token
             }
@@ -75,7 +75,7 @@ function RecSenha({ mostrar, fecharModal }: tipoRecSenha) {
             email: emailRecuperacao,
             novaSenha: novaSenha
         }
-        axios.put(`${process.env.REACT_APP_API_URL}/recupera/senha/usuario`, dados, {
+        axios.put(`${process.env.REACT_APP_API_URL}/recsenha-usuario/recupera/senha/usuario`, dados, {
             headers: {
                 Authorization: token
             }
@@ -158,7 +158,7 @@ function RecSenha({ mostrar, fecharModal }: tipoRecSenha) {
                                 <h4>Ops!</h4>
                 }
             </Modal.Body>
-            <ModalLoad mensagem={"Enviando e-mail..."} carregando={showModalLoad} />
+            <ModalLoad mensagem={"Enviando e-mail de recuperação..."} carregando={showModalLoad} />
         </Modal>
     )
 }

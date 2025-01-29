@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react"
 import InputComponente from "../../../src/components/inputComponent/inputComponente"
 import Button from '@mui/material/Button';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import formatarDinheiro from "../../functions/formatarDinheiro"
 import ModalLoad from '../../components/ModalLoad';
 import axios from "axios"
 import { toast } from 'react-toastify';
@@ -24,18 +23,22 @@ function Principal() {
         setDataFim(e.target.value)
     }
     //carrega informações para alimentar os gráficos
+    const [totalEntrada, setTotalEntrada] = useState(0)
+    const [totalSaida, setTotalSaida] = useState(0)
     function CarregarGraficos() {
         setShowModalLoading(true)
         const dados = {
             dataInicio: dataInicio,
             dataFim: dataFim
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/carregar/dashboard/principal/${idUsuario}`, dados, {
+        axios.post(`${process.env.REACT_APP_API_URL}/dashboard/carregar/dashboard/principal/${idUsuario}`, dados, {
             headers: {
                 Authorization: token
             }
         }).then(function (resposta) {
-            const dados = resposta.data.dados
+            const dados = resposta.data
+            setTotalEntrada(dados.movimentosTotalizados.totalentrada)
+            setTotalSaida(dados.movimentosTotalizados.totalsaida)
             setShowModalLoading(false)
         }).catch(function (erro) {
             toast.error(erro.response.data.message || erro.message)
@@ -100,19 +103,19 @@ function Principal() {
                             <div className="container-fluid">
                                 <div className="row">
                                     <div className="col-sm col-md-12 col-lg-12">
-                                            <PieChart
-                                                colors={["red", "blue"]}
-                                                series={[
-                                                    {
-                                                        data: [
-                                                            { id: 0, value: 10, label: 'M. Saída' },
-                                                            { id: 1, value: 15, label: 'M. Entrada' },
-                                                        ],
-                                                    },
-                                                ]}
-                                                width={250}
-                                                height={100}
-                                            />
+                                        <PieChart
+                                            colors={["red", "blue"]}
+                                            series={[
+                                                {
+                                                    data: [
+                                                        { id: 0, value: totalSaida, label: 'M. Saída' },
+                                                        { id: 1, value: totalEntrada, label: 'M. Entrada' },
+                                                    ],
+                                                },
+                                            ]}
+                                            width={250}
+                                            height={100}
+                                        />
                                     </div>
                                 </div>
                             </div>

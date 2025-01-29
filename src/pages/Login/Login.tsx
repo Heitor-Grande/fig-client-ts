@@ -33,7 +33,7 @@ function Login() {
                 setCarregando(false)
             }).catch(function (erro) {
                 setCarregando(false)
-                toast.error(erro.response.data || erro.message)
+                toast.error("Erro ao estabelecer conexão com servidor.")
             })
         }
         //faz login automatico
@@ -48,7 +48,7 @@ function Login() {
                 navigate("/home/principal")
                 setCarregando(false)
             }).catch(function (erro) {
-                toast.error(erro.response.data || erro.message)
+                toast.error(erro.response.data.message || erro.message)
                 setCarregando(false)
             })
         }
@@ -75,7 +75,7 @@ function Login() {
             setCarregando(false)
         }).catch(function (erro) {
             console.log(erro)
-            toast.error(erro.response.data || erro.message)
+            toast.error(erro.response.data.message || erro.message)
             setCarregando(false)
         })
     }
