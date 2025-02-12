@@ -169,8 +169,7 @@ function Login() {
                         <div className="card">
                             <div className="card-body">
                                 <ul>
-                                    <li>Agendamentos</li>
-                                    <li>Envio de notificações</li>
+                                    <li>Agendamento de lembretes</li>
                                 </ul>
                             </div>
                         </div>

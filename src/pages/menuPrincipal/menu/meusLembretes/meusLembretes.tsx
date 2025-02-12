@@ -1,5 +1,11 @@
 import { Button } from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
+import { Modal } from "react-bootstrap";
+import InputComponente from "../../../../components/inputComponent/inputComponente";
+const styleCloseBtn: React.CSSProperties = {
+    cursor: "pointer",
+    width: "auto", display: "inline-block", padding: "5px"
+}
 function MeusLembretes() {
     return (
         <div className="container-fluid">
@@ -23,11 +29,13 @@ function MeusLembretes() {
                 <div className="col-sm col-md-5 col-lg-4">
                     <div className="card bg-secondary">
                         <div className="card-body p-5 text-center">
-                            <h5 className="card-title text-white">Título do Lembrete</h5>
-                            <p className="card-text text-white">Descrição do lembrete.</p>
+                            <br />
+                            <br />
                             <Button variant="contained" color="primary" size="small" startIcon={<AddIcon />}>
                                 Criar Novo Lembrete
                             </Button>
+                            <br />
+                            <br />
                         </div>
                     </div>
                 </div>
@@ -35,6 +43,36 @@ function MeusLembretes() {
             <div className="row">
 
             </div>
+            <Modal show centered>
+                <Modal.Body>
+                    <div className="container-fluid">
+                        <div className="row flex-row-reverse">
+                            <i className="bi bi-x-circle-fill text-danger" style={styleCloseBtn}></i>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm col-md-12 col-lg-12">
+                                <InputComponente
+                                    label="Título do Lembrete"
+                                    tipo="text"
+                                    required
+                                    id="title"
+                                    placeholder="Digite aqui o título do lembrete..."
+                                    value=""
+                                    onchange={function (e) {
+
+                                    }}
+                                    readOnly={false}
+                                    maxLength={30}
+                                    minLength={5}
+                                />
+                            </div>
+                            <div className="col-sm col-md-12 col-lg-12">
+                                {/*Fazer um componente de textarea para por aqui ou um campo que edite coloque bold etc */}
+                            </div>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </div>
     )
 }
