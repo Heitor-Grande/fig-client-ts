@@ -94,7 +94,7 @@ function Principal() {
                                             />
                                         </div>
                                         <div className='col-sm col-md-12 col-lg-1 p-0 pt-4 text-center'>
-                                            <Button type="submit" sx={{ width: "50%" }} variant="contained" color="primary" size="small" startIcon={<RestartAltIcon />}></Button>
+                                            <Button type="submit" variant="contained" color="primary" size="small" startIcon={<RestartAltIcon />}></Button>
                                         </div>
                                     </div>
                                 </form>
@@ -102,7 +102,8 @@ function Principal() {
                             <br />
                             <div className="container-fluid">
                                 <div className="row">
-                                    <div className="col-sm col-md-12 col-lg-12">
+                                    <div className="col-sm col-md-4 col-lg-3">
+                                        <p className="text-center">Visão Geral</p>
                                         <PieChart
                                             colors={["red", "blue"]}
                                             series={[
@@ -113,7 +114,7 @@ function Principal() {
                                                     ],
                                                 },
                                             ]}
-                                            width={250}
+                                            width={300}
                                             height={100}
                                         />
                                     </div>

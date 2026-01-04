@@ -28,8 +28,8 @@ function ModalConfirmacao({
                             <p>{mensagemPrincipal}</p>
                         </div>
                         <div className="col-sm col-md-12 col-lg-12 text-center">
-                            <Button onClick={acaoBtnCancelar} className="me-2" variant="contained" color="error">{labelBtnCancelar}</Button>
-                            <Button onClick={acaoBtnConfirmar} variant="contained" color="primary">{labelBtnConfirmar}</Button>
+                            <Button onClick={acaoBtnCancelar} size="small" className="me-2" variant="contained" color="error">{labelBtnCancelar}</Button>
+                            <Button onClick={acaoBtnConfirmar} size="small" variant="contained" color="primary">{labelBtnConfirmar}</Button>
                         </div>
                     </div>
                 </div>
