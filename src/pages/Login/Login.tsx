@@ -1,7 +1,6 @@
 import Logo from "../../assets/logo192.png"
 import Footer from "../../components/footer"
 import { useEffect } from "react"
-import TokenPublic from "../../functions/tokenPublic"
 import { toast } from "react-toastify"
 import ModalLoad from "../../components/ModalLoad"
 import { useState } from 'react';
@@ -27,19 +26,11 @@ function Login() {
         setInputslogin({ ...inputsLogin, salvarLogin: obj.target.checked })
     }
     useEffect(function () {
-        if (!sessionStorage.getItem("tokenPublic")) {
-            setCarregando(true)
-            TokenPublic().then(function () {
-                setCarregando(false)
-            }).catch(function (erro) {
-                setCarregando(false)
-                toast.error("Erro ao estabelecer conexão com servidor.")
-            })
-        }
+
         //faz login automatico
         if (localStorage.getItem("tokenLogin")) {
             setCarregando(true)
-            axios.get(`${process.env.REACT_APP_API_URL}/autologin/logar/login/usuario`, {
+            axios.get(`${process.env.REACT_APP_API_URL}/autologin/logar/login/usuario?idUsuario=${localStorage.getItem("idUsuario")}`, {
                 headers: {
                     Authorization: localStorage.getItem("tokenLogin")
                 }

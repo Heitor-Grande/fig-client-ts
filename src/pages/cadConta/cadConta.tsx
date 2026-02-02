@@ -1,7 +1,6 @@
 import Logo from "../../assets/logo192.png"
 import Footer from "../../components/footer"
-import { useEffect, useState } from "react"
-import TokenPublic from "../../functions/tokenPublic"
+import { useState } from "react"
 import { toast } from "react-toastify"
 import ModalLoad from "../../components/ModalLoad"
 import axios from "axios"
@@ -11,18 +10,7 @@ function CadConta() {
     const navigate = useNavigate()
     const token = sessionStorage.getItem("tokenPublic")
     const [carregando, setCarregando] = useState(false)
-    useEffect(function () {
-        if (!sessionStorage.getItem("tokenPublic")) {
-            setCarregando(true)
-            TokenPublic().then(function () {
-                setCarregando(false)
-            }).catch(function (erro) {
 
-                setCarregando(false)
-                toast.error(erro.response.data.message || erro.message)
-            })
-        }
-    }, [])
     const [nome, setNome] = useState("")
     const [senha, setSenha] = useState("")
     const [senhaConfirmar, setSenhaConfirmar] = useState("")
@@ -159,7 +147,7 @@ function CadConta() {
                 </form>
             </div >
 
-            <ModalLoad carregando={carregando} mensagem="Carregando..."/>
+            <ModalLoad carregando={carregando} mensagem="Carregando..." />
             <Footer />
         </>
     )
