@@ -90,7 +90,8 @@ function NavBar() {
                     <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/principal"><i className="bi bi-clipboard2-data me-2"></i>Dashboard</a>
                     <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/controle/caixa"><i className="bi bi-coin me-2"></i>Caixa</a>
                     <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/meus/arquivos"><i className="bi bi-folder-fill me-2"></i>Arquivos</a>
-                    <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/meus/lembretes"><i className="bi bi-journal me-2"></i>Lembretes</a>
+                    <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/meus/lembretes"><i className="bi bi-journal me-2"></i>Agenda</a>
+                    <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/meus/lembretes"><i className="bi bi-bell me-2"></i>Lembretes</a>
                     <hr />
                     <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/" onClick={LogoOff}><i className="bi bi-box-arrow-left me-2"></i>Sair</a>
                 </div>

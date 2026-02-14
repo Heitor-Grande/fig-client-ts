@@ -160,7 +160,8 @@ function Login() {
                         <div className="card">
                             <div className="card-body">
                                 <ul>
-                                    <li>Agendamento de lembretes</li>
+                                    <li>Lembretes</li>
+                                    <li>Agenda</li>
                                 </ul>
                             </div>
                         </div>
@@ -188,13 +189,14 @@ function Login() {
                                     <a className="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Armazenamento em nuvem</a>
                                     <a className="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Controle de Caixa</a>
                                     <a className="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Controle de Agenda</a>
+                                    <a className="list-group-item list-group-item-action" id="list-lembrete-list" data-toggle="list" href="#list-lembrete" role="tab" aria-controls="lembrete">Lembretes</a>
                                 </div>
                             </div>
                             <div className="col-8">
                                 <div className="tab-content" id="nav-tabContent">
                                     <div className="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                                         <ul>
-                                            <li>Armazene gratuitamente documentos ou imagens.</li>
+                                            <li>Armazene documentos ou imagens.</li>
                                             <li>Acesse seus arquivos de forma descomplicada.</li>
                                             <li>Vincule documentos no seu controle de caixa para facilitar sua organização.</li>
                                         </ul>
@@ -210,11 +212,20 @@ function Login() {
                                     </div>
                                     <div className="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
                                         <ul>
-                                            <li>Facilite a organização de tarefas e compromissos, permitindo um planejamento
-                                                mais eficiente e a priorização de atividades importantes.</li>
-                                            <li>Ajuda a equilibrar compromissos pessoais e profissionais,
-                                                garantindo que haja tempo para atividades de lazer e descanso, o que é essencial para o bem-estar geral.</li>
-                                            <li>Receba notificações com aviso referente aos agendamentos.</li>
+                                            <li>Permite que seus clientes acessem sua agenda e realizem agendamentos no horário mais conveniente para eles.</li>
+                                            <li>Receba notificações automáticas sempre que um novo agendamento for solicitado.</li>
+                                            <li>Aprove ou negue agendamentos de forma rápida e prática.</li>
+                                            <li>Agendamentos finalizados geram automaticamente entradas no controle de caixa.</li>
+                                            <li>Facilita a organização de compromissos, otimizando o planejamento e a gestão do seu tempo.</li>
+                                        </ul>
+                                    </div>
+                                    <div className="tab-pane fade" id="list-lembrete" role="tabpanel" aria-labelledby="list-lembrete-list">
+                                        <ul>
+                                            <li>Crie lembretes personalizados para qualquer tipo de compromisso ou tarefa.</li>
+                                            <li>Programe lembretes únicos ou recorrentes: diários, semanais ou mensais.</li>
+                                            <li>Escolha como deseja ser lembrado: via FIG, e-mail ou ambos.</li>
+                                            <li>Tenha total liberdade para definir o conteúdo do lembrete, de acordo com sua necessidade.</li>
+                                            <li>Evite esquecimentos e mantenha sua rotina sempre organizada.</li>
                                         </ul>
                                     </div>
                                 </div>

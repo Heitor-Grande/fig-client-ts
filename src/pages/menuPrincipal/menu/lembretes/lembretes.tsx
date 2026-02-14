@@ -1,3 +1,6 @@
+import { Lembrete } from "./components/Lembrete"
+import { LembreteType } from "./interface.card"
+
 export function Lembretes() {
 
     const styleNovoLembrete: React.CSSProperties = {
@@ -7,6 +10,27 @@ export function Lembretes() {
     const styleCard: React.CSSProperties = {
         cursor: "pointer"
     }
+
+    const listaLembrete: LembreteType[] = [
+        {
+            id: "1",
+            titulo: "Reunião importante",
+            dataCriacao: "",
+            descricao: "Reunião com a equipe",
+            dataDoDisparo: "",
+            recorrencia: "Semanal",
+            readOnly: false
+        },
+        {
+            id: "2",
+            titulo: "Reunião importante 2 ",
+            dataCriacao: "",
+            descricao: "Reunião com a equipe 2",
+            dataDoDisparo: "",
+            recorrencia: "Anual",
+            readOnly: true
+        }
+    ]
 
     return (
         <div className="container-fluid">
@@ -35,7 +59,7 @@ export function Lembretes() {
                 </div>
             </div>
             <div className="row mt-3 mb-3">
-                
+                <Lembrete lembretesIniciais={listaLembrete} />
             </div>
         </div>
     )
