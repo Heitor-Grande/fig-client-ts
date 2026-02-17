@@ -15,7 +15,7 @@ function InputComponente({
     label,
     tipo,
     required,
-    className = "form-control form-control-sm",
+    className,
     id,
     placeholder,
     value,
