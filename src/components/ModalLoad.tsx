@@ -1,8 +1,6 @@
-import React from 'react';
 import Modal from 'react-bootstrap/Modal';
-interface typeModalLoad {
-    carregando: boolean, mensagem: string
-}
+import { typeModalLoad } from "../../../types/globalTypes"
+
 function ModalLoad({ carregando, mensagem }: typeModalLoad) {
     return (
         <Modal show={carregando} centered size="sm">

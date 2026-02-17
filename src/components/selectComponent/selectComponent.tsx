@@ -8,6 +8,7 @@ interface typeSelectComponente {
     label: string
     required: boolean
     disabled: boolean
+    id?: string
 }
 function SelectComponente({
     options,
@@ -15,12 +16,13 @@ function SelectComponente({
     onchange,
     label,
     required,
-    disabled
+    disabled,
+    id
 }: typeSelectComponente) {
     return (
         <div className="form-group">
             <label>{label}</label>
-            <select value={value} required={required} disabled={disabled} onChange={onchange} className="form-select form-select-sm" aria-label=".form-select-sm example">
+            <select value={value} id={id} required={required} disabled={disabled} onChange={onchange} className="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option value="" key={0}>Selecione...</option>
                 {
                     options.map(function (option, index) {
