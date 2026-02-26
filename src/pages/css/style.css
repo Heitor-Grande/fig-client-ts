@@ -2,3 +2,35 @@
     background-color: #1565C0;
     color: white;
 }
+
+.list-group-item.active {
+    background-color: #1565C0 !important;
+    border-color: #1565C0 !important;
+    color: #fff !important;
+}
+
+.bg-primary {
+    background-color: #1565C0 !important;
+}
+
+.btn-primary {
+    background-color: #1565C0;
+    border-color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1872d8;
+    border-color: white;
+}
+
+.btn-outline-primary {
+    background-color: white;
+    border-color: #1565C0;
+    color: #1565C0
+}
+
+.btn-outline-primary:hover {
+    background-color: #1565C0;
+    border-color: white;
+    color: white
+}

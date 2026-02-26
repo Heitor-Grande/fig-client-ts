@@ -143,7 +143,7 @@ export function Lembretes() {
                     <div className="col-md-6 col-lg-4">
                         <form onSubmit={criarLembrete}>
                             <div className="card shadow border-0 h-100 bg-light">
-                                <div className="card-header bg-primary bg-gradient text-white border-0">
+                                <div className="card-header bg-primary text-white border-0">
                                     <strong>
                                         <i className="bi bi-bell me-2"></i>
                                     </strong>

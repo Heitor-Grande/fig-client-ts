@@ -151,7 +151,7 @@ export function Lembrete({ lembretesIniciais, carregarLembretes }: { lembretesIn
                             <div className="card shadow border-0 h-100 bg-light">
 
                                 {/* Header */}
-                                <div className="card-header bg-primary bg-gradient text-white border-0">
+                                <div className="card-header bg-primary text-white border-0">
                                     <strong>
                                         <i className="bi bi-bell me-2"></i>
                                     </strong>
