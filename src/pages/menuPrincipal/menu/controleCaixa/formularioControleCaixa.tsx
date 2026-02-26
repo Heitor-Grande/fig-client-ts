@@ -6,15 +6,13 @@ import formatarDinheiro from "../../../../functions/formatarDinheiro"
 import ModalLoad from "../../../../components/ModalLoad"
 import axios from "axios"
 import { toast } from "react-toastify"
-import Button from '@mui/material/Button';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import ModalConfirmacao from "../../../../components/modalConfirmacao/modalConfirmacao"
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import GerarBase64 from "../../../../functions/gerarBase64"
-import FilePresentIcon from '@mui/icons-material/FilePresent';
 import VisualizarAnexos from "../../../../components/visualizarAnexoComponente/visualizarAnexos"
 import ModalOpcoes from "../../../../components/modalOpcoes/modalOpcoes"
 import DownloadIcon from '@mui/icons-material/Download';
+import ButtonComponente from "../../../../components/buttonComponent/buttonComponent"
 function FormularioControleCaixa() {
     const params = useParams()
     const [inputsMovimento, setInputsMovimento] = useState({
@@ -249,16 +247,16 @@ function FormularioControleCaixa() {
                         link.click()
                         document.body.removeChild(link)
                     },
-                    icone: <DownloadIcon />,
-                    color: "inherit"
+                    icon: 'bi bi-cloud-arrow-down',
+                    className: "btn-outline-primary w-100"
                 },
                 {
                     label: "Excluir Anexo",
                     acao: function () {
                         DeletarAnexoDoMovimento(dadosLinha)
                     },
-                    icone: <DeleteSweepIcon />,
-                    color: "error"
+                    icon: 'bi bi-trash3',
+                    className: "btn-outline-danger w-100"
                 }
             ])
         }
@@ -282,20 +280,32 @@ function FormularioControleCaixa() {
                                 <div className="container-fluid">
                                     <div className="row">
                                         <div className="col-sm col-md-4 col-lg-3 mb-4" hidden={params.acao == "novo" ? true : false}>
-                                            <Button onClick={manipularModalExcluir} type="button" sx={{ width: "100%" }} variant="contained" color="error" size="small" startIcon={<DeleteSweepIcon />}>
-                                                Excluir movimento
-                                            </Button>
+                                            <ButtonComponente
+                                                type="button"
+                                                className="btn-outline-danger w-100"
+                                                label="Excluir movimento"
+                                                onClick={manipularModalExcluir}
+                                                icon="bi bi-trash3"
+                                            />
                                         </div>
                                         <div className="col-sm col-md-4 col-lg-3 mb-4" >
                                             <input onChange={importarArquivos} id="anexarArquivo" type="file" className="d-none" multiple />
-                                            <Button onClick={AbrirInputFile} type="button" sx={{ width: "100%" }} variant="contained" color="inherit" size="small" startIcon={<CloudDownloadIcon />}>
-                                                Anexar Arquivo(s)
-                                            </Button>
+                                            <ButtonComponente
+                                                type="button"
+                                                className="btn-outline-primary w-100"
+                                                label="Anexar Arquivo(s)"
+                                                onClick={AbrirInputFile}
+                                                icon="bi bi-cloud-arrow-up"
+                                            />
                                         </div>
                                         <div className="col-sm col-md-4 col-lg-3 mb-4" hidden={arquivosAnexados.length > 0 ? false : true}>
-                                            <Button onClick={manipularModalVisualizarAnexos} type="button" sx={{ width: "100%" }} variant="contained" color="inherit" size="small" startIcon={<FilePresentIcon />}>
-                                                Meus Anexos
-                                            </Button>
+                                            <ButtonComponente
+                                                type="button"
+                                                className="btn-outline-primary w-100"
+                                                label="Anexos do movimento"
+                                                onClick={manipularModalVisualizarAnexos}
+                                                icon="bi bi-cloud-check"
+                                            />
                                         </div>
                                     </div>
                                     <div className="row">
@@ -351,9 +361,12 @@ function FormularioControleCaixa() {
                                             />
                                         </div>
                                         <div className="col-sm col-md-4 col-lg-3 pt-4">
-                                            <Button type="submit" sx={{ width: "100%" }} variant="contained" color="primary" size="small">
-                                                {params.acao == "novo" ? 'Criar movimento' : 'Salvar Edição'}
-                                            </Button>
+                                            <ButtonComponente
+                                                type="submit"
+                                                className="btn-outline-primary w-100"
+                                                label={params.acao == "novo" ? 'Criar movimento' : 'Salvar Edição'}
+                                                icon="bi bi-plus-lg"
+                                            />
                                         </div>
                                     </div>
                                 </div>

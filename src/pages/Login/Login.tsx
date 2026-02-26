@@ -8,6 +8,8 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import RecSenha from "../../components/recSenha/recSenha"
 import Button from '@mui/material/Button';
+import InputComponente from "../../components/inputComponent/inputComponente"
+import ButtonComponente from "../../components/buttonComponent/buttonComponent"
 function Login() {
     const navigate = useNavigate()
     const [carregando, setCarregando] = useState(false)
@@ -91,16 +93,22 @@ function Login() {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
                                     <a className="nav-link active rounded text-center" href="/cad/nova/conta">
-                                        <Button type="button" variant="contained" color="primary" size="small">
-                                            Criar uma conta
-                                        </Button>
+                                        <ButtonComponente
+                                            type="button"
+                                            className="btn-outline-primary"
+                                            label="Criar uma conta"
+                                            icon="bi bi-person-fill-add"
+                                        />
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link active rounded text-center" href="#infoFIG">
-                                        <Button type="button" variant="contained" color="inherit" size="small">
-                                            Mais sobre o FIG
-                                        </Button>
+                                        <ButtonComponente
+                                            type="button"
+                                            className="btn-outline-primary"
+                                            label="Mais sobre o FIG"
+                                            icon="bi bi-info-lg"
+                                        />
                                     </a>
                                 </li>
                             </ul>
@@ -122,25 +130,52 @@ function Login() {
                                         <div className="col-sm col-md col-lg">
                                             <form onSubmit={FazerLogin}>
                                                 <div className="form-group">
-                                                    <label>Email</label>
-                                                    <input type="email" required value={inputsLogin.email} onChange={onChangeInputLoginEmail} className="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="exemplo@email.com" />
+                                                    <InputComponente
+                                                        label="Email"
+                                                        tipo="email"
+                                                        required={true}
+                                                        className=""
+                                                        id="email"
+                                                        placeholder="Email de Acesso"
+                                                        value={inputsLogin.email}
+                                                        onchange={onChangeInputLoginEmail}
+                                                        readOnly={false}
+                                                    />
                                                     <small id="emailHelp" className="form-text text-muted">Nunca compartilhe essas informações.</small>
                                                 </div>
                                                 <div className="form-group mt-2">
-                                                    <label >Senha</label>
-                                                    <input type="password" required value={inputsLogin.senha} onChange={onChangeInputLoginSenha} className="form-control form-control-sm" id="exampleInputPassword1" placeholder="*******" />
+                                                    <InputComponente
+                                                        label="Senha"
+                                                        tipo="password"
+                                                        required={true}
+                                                        className=""
+                                                        id="senha"
+                                                        placeholder="Senha de Acesso"
+                                                        value={inputsLogin.senha}
+                                                        onchange={onChangeInputLoginSenha}
+                                                        readOnly={false}
+                                                    />
                                                 </div>
                                                 <div className="form-check mt-2">
                                                     <input type="checkbox" onChange={onChangeInputLoginSalvarLogin} checked={inputsLogin.salvarLogin} className="form-check-input" id="exampleCheck1" />
                                                     <label className="form-check-label" >Salvar Login</label>
                                                 </div>
                                                 <div className="form-check mt-2 text-center">
-                                                    <Button type="submit" sx={{ width: "75%" }} variant="contained" color="primary" size="small">
-                                                        Entrar
-                                                    </Button>
+                                                    <ButtonComponente
+                                                        type="submit"
+                                                        className="w-100 btn-outline-primary"
+                                                        label="Entrar"
+                                                        icon="bi bi-door-open-fill"
+                                                    />
                                                 </div>
                                                 <div className="text-center mt-2">
-                                                    <button type="button" className="text-danger btn text-center border-0" onClick={manipularModalRecSenha}> Esqueci minha senha</button>
+                                                    <ButtonComponente
+                                                        type="button"
+                                                        className="text-danger btn text-center border-0"
+                                                        onClick={manipularModalRecSenha}
+                                                        label="Esqueci Minha Senha"
+                                                        icon="bi bi-key-fill"
+                                                    />
                                                 </div>
                                             </form>
                                         </div>

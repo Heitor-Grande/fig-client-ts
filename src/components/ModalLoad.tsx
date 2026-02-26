@@ -1,5 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
-import { typeModalLoad } from "../../../types/globalTypes"
+import { typeModalLoad } from '../types/globalTypes';
+
 
 function ModalLoad({ carregando, mensagem }: typeModalLoad) {
     return (

@@ -7,6 +7,7 @@ import ModalLoad from "../../../../../components/ModalLoad"
 import SelectComponente from "../../../../../components/selectComponent/selectComponent"
 import ModalConfirmacao from "../../../../../components/modalConfirmacao/modalConfirmacao"
 import TextAreaComponent from "../../../../../components/textarea/textareaComponent"
+import ButtonComponente from "../../../../../components/buttonComponent/buttonComponent"
 
 export function Lembrete({ lembretesIniciais, carregarLembretes }: { lembretesIniciais: LembreteType[], carregarLembretes: () => void }) {
 
@@ -275,33 +276,40 @@ export function Lembrete({ lembretesIniciais, carregarLembretes }: { lembretesIn
                                 {/* Footer */}
                                 <div className="card-footer bg-light border-0 d-flex justify-content-end gap-2">
                                     {
-                                        item.readOnly && <button
-                                            className="btn btn-primary btn-sm"
+                                        item.readOnly && <ButtonComponente
                                             type="button"
+                                            className="btn-primary"
+                                            label=""
                                             onClick={() => onChangeLembrete("readOnly", false, index)}
-                                        >
-                                            <i className="bi bi-pencil"></i>
-                                        </button>
+                                            icon="bi bi-pencil-square"
+                                        />
+
                                     }
 
                                     {
                                         !item.readOnly && (
-                                            <button
-                                                className="btn btn-primary btn-sm"
+                                            <ButtonComponente
                                                 type="submit"
-                                            >
-                                                <i className="bi bi-floppy-fill"></i>
-                                            </button>
+                                                className="btn-primary"
+                                                label=""
+                                                icon="bi bi-floppy-fill"
+                                            />
                                         )
                                     }
 
-                                    <button type="button" className="btn btn-danger btn-sm" onClick={function () {
 
-                                        setLembreteRemover(item)
-                                        setShowModalConfirmacao(true)
-                                    }}>
-                                        <i className="bi bi-trash"></i>
-                                    </button>
+                                    <ButtonComponente
+                                        type="button"
+                                        className="btn-danger"
+                                        label=""
+                                        onClick={function () {
+
+                                            setLembreteRemover(item)
+                                            setShowModalConfirmacao(true)
+                                        }}
+                                        icon="bi bi-trash"
+                                    />
+
                                 </div>
 
                             </div>

@@ -6,6 +6,8 @@ import ModalLoad from "../../components/ModalLoad"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import Button from '@mui/material/Button';
+import ButtonComponente from "../../components/buttonComponent/buttonComponent"
+import InputComponente from "../../components/inputComponent/inputComponente"
 function CadConta() {
     const navigate = useNavigate()
     const token = sessionStorage.getItem("tokenPublic")
@@ -74,9 +76,12 @@ function CadConta() {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
                                     <a className="nav-link active rounded text-center" href="/">
-                                        <Button type="button" variant="contained" color="primary" size="small">
-                                            Home
-                                        </Button>
+                                        <ButtonComponente
+                                            type="button"
+                                            className="btn-outline-primary"
+                                            label="Home"
+                                            icon="bi bi-house"
+                                        />
                                     </a>
                                 </li>
                             </ul>
@@ -102,44 +107,80 @@ function CadConta() {
                     <div className="card-body">
                         <div className="container">
                             <div className="row">
-                                <div className="col-sm col-md-5 col-lg-3">
+                                <div className="col-sm col-md-5 col-lg-6">
                                     <div className="form-group">
-                                        <label>Nome</label>
-                                        <input type="text" required value={nome} onChange={function (event) {
-                                            setNome(event.target.value)
-                                        }} className="form-control form-control-sm text-capitalize" placeholder="Nome completo" />
+                                        <InputComponente
+                                            label="Nome"
+                                            tipo="text"
+                                            required={true}
+                                            className="text-capitalize"
+                                            id="nome"
+                                            placeholder="Nome completo"
+                                            value={nome}
+                                            onchange={(event) => setNome(event.target.value)}
+                                            readOnly={false}
+                                        />
                                     </div>
                                 </div>
-                                <div className="col-sm col-md-7 col-lg-3">
+
+                                <div className="col-sm col-md-7 col-lg-6">
                                     <div className="form-group">
-                                        <label>Email</label>
-                                        <input type="email" required value={email} onChange={function (event) {
-                                            setEmail(event.target.value)
-                                        }} className="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="exemplo@email.com" />
+                                        <InputComponente
+                                            label="Email"
+                                            tipo="email"
+                                            required={true}
+                                            className=""
+                                            id="email"
+                                            placeholder="exemplo@email.com"
+                                            value={email}
+                                            onchange={(event) => setEmail(event.target.value)}
+                                            readOnly={false}
+                                        />
                                     </div>
                                 </div>
-                                <div className="col-sm col-md-6 col-lg-3">
+
+                                <div className="col-sm col-md-6 col-lg-6">
                                     <div className="form-group">
-                                        <label>Senha</label>
-                                        <input type="password" minLength={6} required value={senha} onChange={function (event) {
-                                            setSenha(event.target.value)
-                                        }} className="form-control form-control-sm" placeholder="*******" />
+                                        <InputComponente
+                                            label="Senha"
+                                            tipo="password"
+                                            required={true}
+                                            className=""
+                                            id="senha"
+                                            placeholder="*******"
+                                            value={senha}
+                                            onchange={(event) => setSenha(event.target.value)}
+                                            readOnly={false}
+                                            minLength={6}
+                                        />
                                     </div>
                                 </div>
-                                <div className="col-sm col-md-6 col-lg-3">
+
+                                <div className="col-sm col-md-6 col-lg-6">
                                     <div className="form-group">
-                                        <label>Confirmar Senha</label>
-                                        <input type="password" required value={senhaConfirmar} onChange={function (event) {
-                                            setSenhaConfirmar(event.target.value)
-                                        }} className="form-control form-control-sm" placeholder="*******" />
+                                        <InputComponente
+                                            label="Confirmar Senha"
+                                            tipo="password"
+                                            required={true}
+                                            className=""
+                                            id="senhaConfirmar"
+                                            placeholder="*******"
+                                            value={senhaConfirmar}
+                                            onchange={(event) => setSenhaConfirmar(event.target.value)}
+                                            readOnly={false}
+                                        />
                                     </div>
                                 </div>
                             </div>
+
                             <div className="row">
                                 <div className="col-sm col-md-12 col-lg-12 text-center m-auto mt-4">
-                                    <Button type="submit" variant="contained" color="primary" size="small">
-                                        Finalizar Pré-Cadastro
-                                    </Button>
+                                    <ButtonComponente
+                                        type="submit"
+                                        className="btn-outline-primary w-50"
+                                        label="Finalizar Cadastro"
+                                        icon="bi bi-person-fill-add"
+                                    />
                                 </div>
                             </div>
                         </div>

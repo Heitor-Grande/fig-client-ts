@@ -55,7 +55,7 @@ function VisualizarAnexos(
             {modal == true ?
                 <Modal show={mostrar} size="xl" centered onHide={fecharModal}>
                     <Modal.Header closeButton>
-                        <h4>Anexos do movimento</h4>
+                        <p className="m-0 p-0"><b>Anexos do movimento</b></p>
                     </Modal.Header>
                     <Modal.Body>
                         <Table

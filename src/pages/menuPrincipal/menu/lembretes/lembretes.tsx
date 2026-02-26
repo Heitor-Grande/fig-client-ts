@@ -186,6 +186,8 @@ export function Lembretes() {
                     </div>
                 </div>
             </div>
+
+            <hr className="w-75 mx-auto" />
             <div className="row mt-3">
                 <div className="col-sm col-md-12 col-lg-12">
                     <h5 className="text-center fs-4">Meus Lembretes</h5>

@@ -6,6 +6,7 @@ import { toast } from "react-toastify"
 import formatarDinheiro from "../../../../functions/formatarDinheiro";
 import Button from '@mui/material/Button';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import ButtonComponente from "../../../../components/buttonComponent/buttonComponent";
 function ControleDeCaixa() {
     const [rows, setRows] = useState([])
     const columns = [
@@ -84,16 +85,20 @@ function ControleDeCaixa() {
             <div className="row">
                 <div className="col-sm col-md-12 col-lg-12">
                     <div className="card">
-                        <div className="card-body">
-                            <Button variant="contained" sx={{ width: "100%" }} onClick={CriarNovo} size="small" startIcon={<ControlPointIcon />}>
-                                Criar novo movimento
-                            </Button>
+                        <div className="card-body text-end">
+                            <ButtonComponente
+                                type="button"
+                                className="btn-outline-primary w-100"
+                                label="Criar Novo Movimento"
+                                onClick={CriarNovo}
+                                icon="bi bi-plus-lg"
+                            />
                             <Table
                                 rows={rows}
                                 columns={columns}
                                 checkboxSelection={false}
-                                pageSize={5}
-                                pageSizeOptions={[5, 10, 15]}
+                                pageSize={15}
+                                pageSizeOptions={[15, 20, 25]}
                                 onRowClick={onRowClick}
                             />
                         </div>

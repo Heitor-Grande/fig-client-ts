@@ -6,6 +6,7 @@ import ModalLoad from '../../components/ModalLoad';
 import axios from "axios"
 import { toast } from 'react-toastify';
 import { PieChart } from '@mui/x-charts/PieChart';
+import ButtonComponente from "../../components/buttonComponent/buttonComponent";
 function Principal() {
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
     const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
@@ -93,8 +94,13 @@ function Principal() {
                                                 readOnly={false}
                                             />
                                         </div>
-                                        <div className='col-sm col-md-12 col-lg-1 p-0 pt-4 text-center'>
-                                            <Button type="submit" variant="contained" color="primary" size="small" startIcon={<RestartAltIcon />}></Button>
+                                        <div className='col-sm col-md-12 col-lg-1 p-0 pt-4'>
+                                            <ButtonComponente
+                                                type="submit"
+                                                className="btn-outline-primary ms-1"
+                                                label="Carregar"
+                                                icon="bi bi-arrow-clockwise"
+                                            />
                                         </div>
                                     </div>
                                 </form>

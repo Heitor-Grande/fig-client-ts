@@ -1,6 +1,7 @@
 export interface LembreteType {
+
     id: string
-    idusuario:string
+    idusuario: string
     titulo: string
     dataCriacao: string
     descricao: string
@@ -9,7 +10,16 @@ export interface LembreteType {
     readOnly: boolean
 }
 
+export interface ButtonComponentType {
+
+    type: "submit" | "button" | "reset"
+    label: string
+    className: string
+    onClick?: () => void
+    icon?: string
+}
 
 export interface typeModalLoad {
+
     carregando: boolean, mensagem: string
 }

@@ -1,5 +1,6 @@
 import { Modal } from "react-bootstrap"
 import Button from '@mui/material/Button';
+import ButtonComponente from "../buttonComponent/buttonComponent";
 interface typeModalConfirmacao {
     mostrar: boolean
     mensagemPrincipal: string
@@ -17,7 +18,7 @@ function ModalConfirmacao({
     acaoBtnCancelar
 }: typeModalConfirmacao) {
     return (
-        <Modal show={mostrar} size="lg" centered>
+        <Modal show={mostrar} size="sm" centered>
             <Modal.Body>
                 <div className="container-fluid">
                     <div className="row">
@@ -28,8 +29,18 @@ function ModalConfirmacao({
                             <p>{mensagemPrincipal}</p>
                         </div>
                         <div className="col-sm col-md-12 col-lg-12 text-center">
-                            <Button onClick={acaoBtnCancelar} size="small" className="me-2" variant="contained" color="primary">{labelBtnCancelar}</Button>
-                            <Button onClick={acaoBtnConfirmar} size="small" variant="contained" color="error">{labelBtnConfirmar}</Button>
+                            <ButtonComponente
+                                type="button"
+                                className="btn-outline-primary me-2"
+                                label={labelBtnCancelar}
+                                onClick={acaoBtnCancelar}
+                            />
+                            <ButtonComponente
+                                type="button"
+                                className="btn-outline-danger"
+                                label={labelBtnConfirmar}
+                                onClick={acaoBtnConfirmar}
+                            />
                         </div>
                     </div>
                 </div>

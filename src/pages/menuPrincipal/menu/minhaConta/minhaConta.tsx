@@ -11,6 +11,7 @@ import Checkbox from '@mui/material/Checkbox';
 import GerarBase64 from "../../../../functions/gerarBase64";
 import Button from '@mui/material/Button';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import ButtonComponente from "../../../../components/buttonComponent/buttonComponent";
 function MinhaConta() {
     interface typeInputsConta {
         email: string,
@@ -175,9 +176,12 @@ function MinhaConta() {
                                     </div>
                                     <div className="row">
                                         <div className="col-sm col-md-6 col-lg-12 text-end mt-2">
-                                            <Button type="submit" sx={{ width: "100%" }} variant="contained" color="primary" size="small">
-                                                Salvar
-                                            </Button>
+                                            <ButtonComponente
+                                                type="submit"
+                                                className="btn-primary w-100"
+                                                label="Salvar"
+                                                icon="bi bi-floppy-fill"
+                                            />
                                         </div>
                                     </div>
                                 </div>

@@ -10,39 +10,10 @@ import axios from 'axios';
 import ModalOpcoes from '../../../../components/modalOpcoes/modalOpcoes';
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import ButtonComponente from '../../../../components/buttonComponent/buttonComponent';
 function MeusArquivos() {
     const [rows, setRows] = useState([])
-    /*const columns = [
-        {
-            field: "titulo",
-            headerName: "Título",
-            width: 400,
-            type: "string",
-            cellClassName: function () {
-                return 'text-capitalize '
-            }
-        },
-        {
-            field: "datamovimento",
-            headerName: "Data do Movimento",
-            width: 150,
-            type: "Date"
-        },
-        {
-            field: "tipo",
-            headerName: "Tipo",
-            width: 100,
-            type: "string",
-            cellClassName: function (objColuna: any) {
-                if (objColuna.formattedValue == "S") {
-                    return 'bg-danger text-white text-center'
-                }
-                else if (objColuna.formattedValue == "E") {
-                    return 'bg-success text-white text-center'
-                }
-            }
-        }
-    ]*/
+
     const [showModalLoading, setShowModalLoading] = useState(false)
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
     const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
@@ -122,16 +93,16 @@ function MeusArquivos() {
                     link.click()
                     document.body.removeChild(link)
                 },
-                icone: <DownloadIcon />,
-                color: "inherit"
+                icon: 'bi bi-cloud-arrow-down',
+                className: "btn-outline-primary w-100"
             },
             {
                 label: "Excluir Arquivo",
                 acao: function () {
                     DeletarArquivo(dadosLinha)
                 },
-                icone: <DeleteSweepIcon />,
-                color: "error"
+                icon: 'bi bi-trash3',
+                className: "btn-outline-danger w-100"
             }
         ])
         manipularModalOpcoes()
@@ -154,9 +125,13 @@ function MeusArquivos() {
                         <div className="card-body">
                             <div className='col-sm col-md-12 col-lg-12'>
                                 <input onChange={fazerUpload} id="anexarArquivo" type="file" className="d-none" multiple />
-                                <Button variant="contained" sx={{ width: "100%" }} onClick={AbrirInputFile} size="small" startIcon={<CloudUploadIcon />}>
-                                    Novo Upload
-                                </Button>
+                                <ButtonComponente
+                                    type="button"
+                                    className="btn-outline-primary w-100"
+                                    label="Novo Upload"
+                                    onClick={AbrirInputFile}
+                                    icon="bi bi-cloud-arrow-up"
+                                />
                             </div>
                             <VisualizarAnexos
                                 onRowClick={onRowClick}

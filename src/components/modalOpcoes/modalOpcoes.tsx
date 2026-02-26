@@ -1,10 +1,11 @@
 import { Modal } from "react-bootstrap"
 import Button from '@mui/material/Button';
+import ButtonComponente from "../buttonComponent/buttonComponent";
 interface typeOpcoesModalOpcoes {
     label: string
     acao: () => void
-    icone: React.JSX.Element
-    color: "secondary" | "success" | "error" | "info" | "warning"
+    icon: string
+    className: string
 }
 interface typeModalOpcoes {
     titulo: string
@@ -23,7 +24,7 @@ function ModalOpcoes({
     return (
         <Modal show={mostrar} onHide={fecharModal} size="lg" centered>
             <Modal.Header closeButton>
-                <h4>{titulo}</h4>
+                <p className="m-0 p-0"><b>{titulo}</b></p>
             </Modal.Header>
             <Modal.Body>
                 <div className="container">
@@ -36,9 +37,14 @@ function ModalOpcoes({
                         {
                             arrayOpcoes.map(function (opcao, index) {
                                 return <div className="col-sm col-md-4 col-lg-4 mt-2" key={index}>
-                                    <Button type="button" sx={{ width: "100%" }} variant="contained" color={opcao.color} size="small" startIcon={opcao.icone} onClick={opcao.acao}>
-                                        {opcao.label}
-                                    </Button>
+
+                                    <ButtonComponente
+                                        type="button"
+                                        className={opcao.className}
+                                        icon={opcao.icon}
+                                        label={opcao.label}
+                                        onClick={opcao.acao}
+                                    />
                                 </div>
                             })
                         }

@@ -3,6 +3,8 @@ import Modal from 'react-bootstrap/Modal';
 import ModalLoad from '../ModalLoad';
 import axios from "axios"
 import { toast } from "react-toastify"
+import InputComponente from '../inputComponent/inputComponente';
+import ButtonComponente from '../buttonComponent/buttonComponent';
 interface tipoRecSenha {
     mostrar: boolean,
     fecharModal: () => void
@@ -99,7 +101,7 @@ function RecSenha({ mostrar, fecharModal }: tipoRecSenha) {
     return (
         <Modal show={mostrar} centered size="lg" onHide={fecharModal}>
             <Modal.Header closeButton>
-                <p>Recuperação de senha</p>
+                <p className='m-0 p-0'>Recuperação de senha</p>
             </Modal.Header>
             <Modal.Body>
                 {
@@ -111,11 +113,25 @@ function RecSenha({ mostrar, fecharModal }: tipoRecSenha) {
                                         <p>Informe o e-mail da sua conta para receber o e-mail de verificação e recuperar sua senha.</p>
                                     </div>
                                     <div className='col-sm col-md-12 col-lg-5'>
-                                        <label>Email</label>
-                                        <input required type="email" value={emailRecuperacao} onChange={setValueEmailRecuperacao} className="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="exemplo@email.com" />
+                                        <InputComponente
+                                            label="Email"
+                                            tipo="email"
+                                            required={true}
+                                            className=""
+                                            id="email"
+                                            placeholder="E-mail para recuperação"
+                                            value={emailRecuperacao}
+                                            onchange={setValueEmailRecuperacao}
+                                            readOnly={false}
+                                        />
+
                                     </div>
                                     <div className='col-sm col-md-12 col-lg-7 pt-4 text-end'>
-                                        <button type="submit" className='btn btn-outline-primary btn-sm'>Enviar E-mail de verificação</button>
+                                        <ButtonComponente
+                                            type="submit"
+                                            className='btn btn-outline-primary btn-sm'
+                                            label='Enviar E-mail de verificação'
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -128,11 +144,25 @@ function RecSenha({ mostrar, fecharModal }: tipoRecSenha) {
                                             <p>Informe o código recebido no e-mail de verificação para recuperar sua senha.</p>
                                         </div>
                                         <div className='col-sm col-md-12 col-lg-5'>
-                                            <label>Código</label>
-                                            <input required type="text" value={codigo} onChange={setValueCodigo} className="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Código de 5 digitos" maxLength={5} minLength={5} />
+                                            <InputComponente
+                                                label="Código"
+                                                tipo="text"
+                                                required={true}
+                                                className=""
+                                                id="codigo"
+                                                placeholder="Código de 5 Digitos"
+                                                value={codigo}
+                                                onchange={setValueCodigo}
+                                                readOnly={false}
+                                                maxLength={5} minLength={5}
+                                            />
                                         </div>
                                         <div className='col-sm col-md-12 col-lg-7 pt-4 text-end'>
-                                            <button type="submit" className='btn btn-outline-primary btn-sm'>Validar Código</button>
+                                            <ButtonComponente
+                                                type="submit"
+                                                className='btn btn-outline-primary btn-sm'
+                                                label='Validar Código'
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -145,11 +175,25 @@ function RecSenha({ mostrar, fecharModal }: tipoRecSenha) {
                                                 <p>Defina a sua nova senha</p>
                                             </div>
                                             <div className='col-sm col-md-12 col-lg-5'>
-                                                <label>Nova Senha</label>
-                                                <input required minLength={6} type="password" value={novaSenha} onChange={setarValueNovaSenha} className="form-control form-control-sm" id="minhaSenha" placeholder="******" />
+                                                <InputComponente
+                                                    label="Nova Senha"
+                                                    tipo="password"
+                                                    required={true}
+                                                    className=""
+                                                    id="senha1"
+                                                    placeholder="Digite sua nova senha..."
+                                                    value={novaSenha}
+                                                    onchange={setarValueNovaSenha}
+                                                    readOnly={false}
+                                                    minLength={6}
+                                                />
                                             </div>
                                             <div className='col-sm col-md-12 col-lg-7 pt-4 text-end'>
-                                                <button type="submit" className='btn btn-outline-primary btn-sm'>Definir nova Senha</button>
+                                                <ButtonComponente
+                                                    type="submit"
+                                                    className='btn btn-outline-primary btn-sm'
+                                                    label='Definir nova Senha'
+                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -158,7 +202,7 @@ function RecSenha({ mostrar, fecharModal }: tipoRecSenha) {
                                 <h4>Ops!</h4>
                 }
             </Modal.Body>
-            <ModalLoad mensagem={"Enviando e-mail de recuperação..."} carregando={showModalLoad} />
+            <ModalLoad mensagem={"Carregando Informações..."} carregando={showModalLoad} />
         </Modal>
     )
 }
