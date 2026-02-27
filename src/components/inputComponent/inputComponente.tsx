@@ -25,7 +25,7 @@ function InputComponente({
     minLength
 }: typeInputComponente) {
     return <div className="form-group">
-        <label>{label}</label>
+        <label id={id}>{label}</label>
         <input type={tipo}
             disabled={readOnly}
             required={required}

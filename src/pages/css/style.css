@@ -1,22 +1,35 @@
+/*INPUT*/
+.form-control:focus {
+    border-color: #0000AA;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 170, 0.25);
+}
+
+.form-check-input {
+    border-color: #0000AA;
+}
+
+.form-check-input:checked {
+    background-color: #0000AA;
+    border-color: #0000AA;
+}
+
+/*CSS DE BOTÃO PRIMARY*/
 .hoverLink:hover {
-    background-color: #1565C0;
+    background-color: #0000AA;
     color: white;
 }
 
 .list-group-item.active {
-    background-color: #1565C0 !important;
-    border-color: #1565C0 !important;
+    background-color: #0000AA !important;
+    border-color: #0000AA !important;
     color: #fff !important;
 }
 
-.bg-primary {
-    background-color: #1565C0 !important;
-}
-
 .btn-primary {
-    background-color: #1565C0;
+    background-color: #0000AA;
     border-color: white;
 }
+
 
 .btn-primary:hover {
     background-color: #1872d8;
@@ -25,12 +38,17 @@
 
 .btn-outline-primary {
     background-color: white;
-    border-color: #1565C0;
-    color: #1565C0
+    border-color: #0000AA;
+    color: #0000AA
 }
 
 .btn-outline-primary:hover {
-    background-color: #1565C0;
+    background-color: #0000AA;
     border-color: white;
     color: white
+}
+
+/* CSS bg-primary */
+.bg-primary {
+    background-color: #0000AA !important;
 }
