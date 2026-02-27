@@ -17,6 +17,7 @@ export interface ButtonComponentType {
     className: string
     onClick?: () => void
     icon?: string
+    disabled?: boolean
 }
 
 export interface typeModalLoad {

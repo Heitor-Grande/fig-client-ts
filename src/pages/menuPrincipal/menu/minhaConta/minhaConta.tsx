@@ -9,9 +9,8 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import GerarBase64 from "../../../../functions/gerarBase64";
-import Button from '@mui/material/Button';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import ButtonComponente from "../../../../components/buttonComponent/buttonComponent";
+
 function MinhaConta() {
     interface typeInputsConta {
         email: string,
@@ -97,8 +96,37 @@ function MinhaConta() {
             setShowModalCarregando(false)
         })
     }
+
+
+    //pegar informações do SW
+    //--notificações
+    const [statusNotificacao, setStatusNotificacao] = useState<"granted" | "denied" | "default">()
+    async function verificarPermissaoNotificacao() {
+        const permission = await Notification.requestPermission()
+
+        setStatusNotificacao(permission)
+    }
+
+    async function ativarNotificacoes() {
+
+        try {
+            const permission = await Notification.requestPermission()
+
+            console.log("Permissão Solicitada: " + permission)
+
+            if (permission == "default" || permission == "denied" || permission == "granted") {
+
+                await verificarPermissaoNotificacao()
+            }
+        } catch (error) {
+
+            console.log("Erro ao solicitar permissão: " + error)
+        }
+    }
+
     useEffect(function () {
         CarregarInformacoesUsuario()
+        verificarPermissaoNotificacao()
     }, [])
     return (
         <div className="container-fluid">
@@ -121,12 +149,10 @@ function MinhaConta() {
                                                 />
                                                 <input className="d-none" onChange={setAvatarConta} type="file" id="imgAvatar" multiple={false} accept=".png, .jpeg, .jpg" />
                                                 <label className="btn border-0" htmlFor="imgAvatar">
-                                                    <ModeEditIcon color="primary" />
+                                                    <i className="bi bi-pencil-square text-color-icon" />
                                                 </label>
                                             </Stack>
                                         </div>
-                                    </div>
-                                    <div className="row">
                                         <div className="col-sm col-md-6 col-lg-2">
                                             <InputComponente
                                                 label={"Data de Criação"}
@@ -149,6 +175,18 @@ function MinhaConta() {
                                                     label={inputsConta.ativo == true ? "Ativo" : "Bloqueado"} />
                                             </FormGroup>
                                         </div>
+                                        <div className="col-sm col-md-6 col-lg-3 pt-3">
+                                            <ButtonComponente
+                                                type="button"
+                                                label={statusNotificacao == "granted" ? "Notificações Ativadas" : statusNotificacao == "denied" ? "Notificações Bloqueadas, necessário ação do Usuário." : statusNotificacao == "default" ? "Ativar Notificações" : "Carregando..."}
+                                                onClick={ativarNotificacoes}
+                                                disabled={statusNotificacao == "granted" || statusNotificacao == "denied"}
+                                                className="btn-primary w-100"
+                                                icon="bi bi-bell-fill"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="row">
                                         <div className="col-sm col-md-6 col-lg-4">
                                             <InputComponente
                                                 label={"Nome"}
@@ -173,9 +211,7 @@ function MinhaConta() {
                                                 readOnly={false}
                                             />
                                         </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-sm col-md-6 col-lg-12 text-end mt-2">
+                                        <div className="col-sm col-md-6 col-lg-4 pt-4">
                                             <ButtonComponente
                                                 type="submit"
                                                 className="btn-primary w-100"

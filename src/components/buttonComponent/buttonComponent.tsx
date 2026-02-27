@@ -5,10 +5,11 @@ export default function ButtonComponente({
     label,
     onClick,
     className,
-    icon
+    icon,
+    disabled
 }: ButtonComponentType) {
 
-    return <button type={type} className={className + ' btn btn-sm'} onClick={onClick}>
+    return <button type={type} disabled={disabled} className={className + ' btn btn-sm'} onClick={onClick}>
         {
             (icon && label != "") ? (
                 <i className={icon + ' me-2'} />

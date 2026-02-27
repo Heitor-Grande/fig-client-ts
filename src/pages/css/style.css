@@ -1,7 +1,20 @@
+.text-color-icon {
+    color: #0000AA !important;
+}
+
+.text-color-icon:hover {
+    color: #000088 !important;
+}
+
+/*CARD*/
+.card {
+    border-color: #0000AA !important;
+}
+
 /*INPUT*/
 .form-control:focus {
-    border-color: #0000AA;
-    box-shadow: 0 0 0 0.25rem rgba(0, 0, 170, 0.25);
+    border-color: #0000AA !important;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 170, 0.25) !important;
 }
 
 .form-check-input {
@@ -14,9 +27,18 @@
 }
 
 /*CSS DE BOTÃO PRIMARY*/
+.btn-primary:disabled,
+.btn-primary.disabled,
+.btn-outline-primary:disabled,
+.btn-outline-primary.disabled {
+    background-color: #0000AA !important;
+    border-color: #0000AA !important;
+    color: #fff !important;
+}
+
 .hoverLink:hover {
-    background-color: #0000AA;
-    color: white;
+    background-color: #0000AA !important;
+    color: white !important;
 }
 
 .list-group-item.active {
@@ -26,26 +48,26 @@
 }
 
 .btn-primary {
-    background-color: #0000AA;
-    border-color: white;
+    background-color: #0000AA !important;
+    border-color: white !important;
 }
 
 
 .btn-primary:hover {
-    background-color: #1872d8;
-    border-color: white;
+    background-color: #000088 !important;
+    border-color: white !important;
 }
 
 .btn-outline-primary {
-    background-color: white;
-    border-color: #0000AA;
-    color: #0000AA
+    background-color: white !important;
+    border-color: #0000AA !important;
+    color: #0000AA !important;
 }
 
 .btn-outline-primary:hover {
-    background-color: #0000AA;
-    border-color: white;
-    color: white
+    background-color: #0000AA !important;
+    border-color: white !important;
+    color: white !important;
 }
 
 /* CSS bg-primary */

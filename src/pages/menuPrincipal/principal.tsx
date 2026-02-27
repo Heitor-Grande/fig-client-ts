@@ -1,13 +1,12 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import InputComponente from "../../../src/components/inputComponent/inputComponente"
-import Button from '@mui/material/Button';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import ModalLoad from '../../components/ModalLoad';
 import axios from "axios"
 import { toast } from 'react-toastify';
 import { PieChart } from '@mui/x-charts/PieChart';
 import ButtonComponente from "../../components/buttonComponent/buttonComponent";
 function Principal() {
+    
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
     const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
     const [showModalLoading, setShowModalLoading] = useState(false)
@@ -46,9 +45,11 @@ function Principal() {
             setShowModalLoading(false)
         })
     }
+
     useEffect(function () {
         CarregarGraficos()
     }, [])
+
     return (
         <div className="container-fluid">
             <div className="row">
