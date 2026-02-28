@@ -63,18 +63,18 @@ function NavBar() {
     function minhaConta() {
         navigate("/home/minha/conta")
     }
-    
+
     return (
         <div className="App mb-3">
             <ModalLoad carregando={showModalCarregando} mensagem="Carregando..." />
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light bg-primary">
                 <div className="container-fluid">
-                    <a className="btn btn-sm border px-3" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                        <i className="bi bi-list fs-2"></i>
+                    <a className="border-none px-3 text-white" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                        <i className="bi bi-list fs-4"></i>
                     </a>
                     <div className="row">
                         <div className="col-sm col-md col-lg d-flex">
-                            <Stack sx={{ cursor: "pointer" }} className="text-center" direction="row" spacing={2}>
+                            <Stack sx={{ cursor: "pointer" }} className="text-center bg primary" direction="row" spacing={2}>
                                 <Avatar alt="Remy Sharp"
                                     src={inputsUsuario.avatar}
                                     sx={{ width: 50, height: 50 }}
@@ -88,7 +88,7 @@ function NavBar() {
             <div className="offcanvas offcanvas-start" tabIndex={-1} id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                 <div className="offcanvas-header border-bottom">
                     <h5 className="offcanvas-title fs-4" id="offcanvasExampleLabel">Menu</h5>
-                    <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button type="button" className="btn-close text-reset d-block text-center" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div className="offcanvas-body px-0 pt-0">
                     <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/principal"><i className="bi bi-clipboard2-data me-2"></i>Dashboard</a>

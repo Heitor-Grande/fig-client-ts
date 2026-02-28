@@ -98,7 +98,7 @@ function Principal() {
                                         <div className='col-sm col-md-12 col-lg-1 p-0 pt-4'>
                                             <ButtonComponente
                                                 type="submit"
-                                                className="btn-outline-primary ms-1"
+                                                className="btn-outline-primary ms-1 w-100"
                                                 label="Carregar"
                                                 icon="bi bi-arrow-clockwise"
                                             />
@@ -112,7 +112,7 @@ function Principal() {
                                     <div className="col-sm col-md-4 col-lg-3">
                                         <p className="text-center">Visão Geral</p>
                                         <PieChart
-                                            colors={["red", "blue"]}
+                                            colors={["red", "#0000AA"]}
                                             series={[
                                                 {
                                                     data: [
