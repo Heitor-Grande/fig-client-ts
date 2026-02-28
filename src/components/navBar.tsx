@@ -7,42 +7,6 @@ import { toast } from "react-toastify"
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 
-//cria o serviceWorker no navegador
-if ('serviceWorker' in navigator) {
-
-    window.addEventListener("load", async function () {
-
-        try {
-
-            const response = await this.navigator.serviceWorker.register("/sw.js")
-            console.log("Sucesso ao registrar/consultar ServiceWorker")
-        } catch (error) {
-
-            console.error("Erro ao registrar/consultar ServiceWorker:", error)
-        }
-    })
-}
-
-//pede permissão de notificação
-async function pedirPermissaoNotificacao() {
-    try {
-        const permission = await Notification.requestPermission();
-        //granted -> ja ativada
-        //denied -> notificações bloqueadas, necessario ação do usuario para ativar.
-        //default -> a aplicação pode solicitar a permissão
-
-        console.log("Permissão de notificação: " + permission)
-
-        new Notification("Título da Notificação", {
-            body: "Olá! Isso é um teste 👍",
-            icon: "https://example.com/icone.png" // opcional
-        });
-    } catch (error) {
-
-        console.log("Erro ao solicitar permissão: " + error)
-    }
-}
-
 function NavBar() {
     const [showModalCarregando, setShowModalCarregando] = useState(false)
     const navigate = useNavigate()
@@ -86,18 +50,20 @@ function NavBar() {
         })
     }
     useEffect(function () {
+
         VerificaLogin()
         CarregarInformacoesUsuario()
-
-        pedirPermissaoNotificacao()
     }, [])
+
     function LogoOff() {
         sessionStorage.clear()
         localStorage.clear()
     }
+
     function minhaConta() {
         navigate("/home/minha/conta")
     }
+    
     return (
         <div className="App mb-3">
             <ModalLoad carregando={showModalCarregando} mensagem="Carregando..." />

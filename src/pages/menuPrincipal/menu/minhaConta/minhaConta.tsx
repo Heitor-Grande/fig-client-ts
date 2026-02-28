@@ -102,9 +102,21 @@ function MinhaConta() {
     //--notificações
     const [statusNotificacao, setStatusNotificacao] = useState<"granted" | "denied" | "default">()
     async function verificarPermissaoNotificacao() {
-        const permission = await Notification.requestPermission()
+        try {
+            const permission = await Notification.requestPermission()
 
-        setStatusNotificacao(permission)
+            console.log("Permissão Solicitada: " + permission)
+
+            if (permission == "granted") {
+
+                const sw = await navigator.serviceWorker.ready
+            }
+
+            setStatusNotificacao(permission)
+        } catch (error) {
+
+            console.log(error)
+        }
     }
 
     async function ativarNotificacoes() {
@@ -180,14 +192,14 @@ function MinhaConta() {
                                                 type="button"
                                                 label={statusNotificacao == "granted" ? "Notificações Ativadas" : statusNotificacao == "denied" ? "Notificações Bloqueadas, necessário ação do Usuário." : statusNotificacao == "default" ? "Ativar Notificações" : "Carregando..."}
                                                 onClick={ativarNotificacoes}
-                                                disabled={statusNotificacao == "granted" || statusNotificacao == "denied"}
+                                                disabled={statusNotificacao == "granted" || statusNotificacao == "denied" || statusNotificacao == undefined}
                                                 className="btn-primary w-100"
                                                 icon="bi bi-bell-fill"
                                             />
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-sm col-md-6 col-lg-4">
+                                        <div className="col-sm col-md-6 col-lg-4 mt-2">
                                             <InputComponente
                                                 label={"Nome"}
                                                 tipo={"text"}
@@ -199,7 +211,7 @@ function MinhaConta() {
                                                 readOnly={false}
                                             />
                                         </div>
-                                        <div className="col-sm col-md-6 col-lg-4">
+                                        <div className="col-sm col-md-6 col-lg-4 mt-2">
                                             <InputComponente
                                                 label={"E-mail"}
                                                 tipo={"email"}
@@ -211,7 +223,7 @@ function MinhaConta() {
                                                 readOnly={false}
                                             />
                                         </div>
-                                        <div className="col-sm col-md-6 col-lg-4 pt-4">
+                                        <div className="col-sm col-md-6 col-lg-4 pt-4 mt-2">
                                             <ButtonComponente
                                                 type="submit"
                                                 className="btn-primary w-100"

@@ -10,6 +10,7 @@ import RecSenha from "../../components/recSenha/recSenha"
 import Button from '@mui/material/Button';
 import InputComponente from "../../components/inputComponent/inputComponente"
 import ButtonComponente from "../../components/buttonComponent/buttonComponent"
+import { pedirPermissaoNotificacao, swInstall } from "../../functions/sw"
 function Login() {
     const navigate = useNavigate()
     const [carregando, setCarregando] = useState(false)
@@ -53,7 +54,7 @@ function Login() {
             headers: {
                 Authorization: sessionStorage.getItem("tokenPublic")
             }
-        }).then(function (resposta) {
+        }).then(async function (resposta) {
             const tokenLogin = resposta.data.tokenLogin
             const usuario = resposta.data.usuario
             if (inputsLogin.salvarLogin) {
@@ -64,12 +65,15 @@ function Login() {
                 sessionStorage.setItem("tokenLogin", tokenLogin)
                 sessionStorage.setItem("idUsuario", usuario.id_usuario)
             }
+
+            await swInstall()
+            await pedirPermissaoNotificacao()
+            setCarregando(false)
             navigate("/home/principal")
-            setCarregando(false)
         }).catch(function (erro) {
-            console.log(erro)
-            toast.error(erro.response.data.message || erro.message)
+
             setCarregando(false)
+            toast.error(erro.response.data.message || erro.message)
         })
     }
     //recuperação de senha
