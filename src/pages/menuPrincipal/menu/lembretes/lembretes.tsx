@@ -22,8 +22,8 @@ export function Lembretes() {
         dataDoDisparo: "",
         id: "",
         readOnly: false,
-        recorrencia: "Diario",
-
+        recorrencia: "Unico",
+        disparado: false
     }
     const [novoLembrete, setNovoLembrete] = useState<LembreteType>(lembreteInicial)
 
@@ -193,16 +193,13 @@ export function Lembretes() {
                     <h5 className="text-center fs-4">Meus Lembretes</h5>
                 </div>
             </div>
-            <div className="row mt-3 mb-3">
-                {
-                    listaDeLembretes.length > 0 && carregando.carregando != true && (
-                        <Lembrete lembretesIniciais={listaDeLembretes} carregarLembretes={async function () {
-                            await carregarLembretes(idUsuario, token)
-                        }} />
-                    )
-                }
-            </div>
-
+            {
+                listaDeLembretes.length > 0 && carregando.carregando != true && (
+                    <Lembrete lembretesIniciais={listaDeLembretes} carregarLembretes={async function () {
+                        await carregarLembretes(idUsuario, token)
+                    }} />
+                )
+            }
             <ModalLoad carregando={carregando.carregando} mensagem={carregando.mensagem} />
         </div>
     )

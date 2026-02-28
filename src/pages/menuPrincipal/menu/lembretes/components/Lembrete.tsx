@@ -140,183 +140,184 @@ export function Lembrete({ lembretesIniciais, carregarLembretes }: { lembretesIn
     }
 
     return (
-        <div className="container mt-4">
-            <div className="row g-3">
+        <div className="col-sm col-md-12 col-lg-12">
+            <div className="row">
                 {lembretes.map((item, index) => (
-                    <form onSubmit={function (e) {
-                        e.preventDefault()
-                        atualizarLembrete(item, index)
-                    }}>
-                        <div className="col-md-6 col-lg-4" key={index}>
-                            <div className="card shadow border-0 h-100 bg-light">
+                    <div className="col-sm-6 col-md-4 col-lg-4 mt-2">
+                        <form onSubmit={function (e) {
+                            e.preventDefault()
+                            atualizarLembrete(item, index)
+                        }}>
+                            <div className="col-md-12 col-lg-12" key={index}>
+                                <div className="card shadow border-0 h-100 bg-light">
 
-                                {/* Header */}
-                                <div className="card-header bg-primary text-white border-0">
-                                    <strong>
-                                        <i className="bi bi-bell me-2"></i>
-                                    </strong>
+                                    {/* Header */}
+                                    <div className="card-header bg-primary text-white border-0">
+                                        <strong>
+                                            <i className="bi bi-bell me-2"></i>
+                                        </strong>
 
-                                    <InputComponente
-                                        label="Lembrete"
-                                        tipo="text"
-                                        required
-                                        className="d-block mt-2 w-100"
-                                        id="titulo"
-                                        placeholder="Titulo"
-                                        onchange={(e) =>
-                                            onChangeLembrete(e.target.id, e.target.value, index)
+                                        {
+                                            item.disparado ? <span className="badge bg-success">Enviado</span> : <span className="badge bg-secondary">Pendente</span>
                                         }
-                                        value={item.titulo}
-                                        readOnly={item.readOnly}
-                                        maxLength={25}
-                                        minLength={5}
-                                    />
-                                </div>
 
-                                <div className="card-body p-3 bg-white">
-                                    <div className="container-fluid">
-                                        <div className="row">
-                                            <div className="col-sm col-md-12 col-lg-12">
-                                                <strong className="text-primary">
-                                                    <i className="bi bi-card-text me-2"></i>
-                                                </strong>
-
-                                                <TextAreaComponent
-                                                    label="Descrição"
-                                                    className=""
-                                                    id="descricao"
-                                                    onchange={(e) =>
-                                                        onChangeLembrete(e.target.id, e.target.value, index)
-                                                    }
-                                                    rows={2}
-                                                    value={item.descricao}
-                                                    disabled={item.readOnly}
-                                                    maxLength={50}
-                                                    minLength={10}
-                                                    required
-                                                />
-                                            </div>
-
-                                            <div className="col-sm col-md-6 col-lg-12 mt-1">
-                                                <strong className="text-info">
-                                                    <i className="bi bi-arrow-repeat me-2"></i>
-                                                </strong>
-                                                <SelectComponente
-                                                    label="Recorrência"
-                                                    required
-                                                    onchange={
-                                                        (e) =>
-                                                            onChangeLembrete(e.target.id, e.target.value, index)
-                                                    }
-                                                    options={[{
-                                                        label: "Semanal", value: "Semanal",
-                                                    },
-                                                    {
-                                                        label: "Diario", value: "Diario",
-                                                    },
-                                                    {
-                                                        label: "Mensal", value: "Mensal",
-                                                    },
-                                                    {
-                                                        label: "Anual", value: "Anual",
-                                                    },
-                                                    {
-                                                        label: "Unico", value: "Unico",
-                                                    }
-                                                    ]}
-                                                    disabled={item.readOnly}
-                                                    value={item.recorrencia}
-                                                />
-                                            </div>
-
-                                            <div className="col-sm col-md-6 col-lg-6 mt-1">
-                                                <strong className="text-warning">
-                                                    <i className="bi bi-alarm me-2"></i>
-                                                </strong>
-                                                <InputComponente
-                                                    label="Data de Disparo"
-                                                    tipo="datetime-local"
-                                                    required
-                                                    className="d-block mt-1 w-100"
-                                                    id="dataDoDisparo"
-                                                    placeholder="Data de Disparo"
-                                                    onchange={(e) =>
-                                                        onChangeLembrete(e.target.id, e.target.value, index)
-                                                    }
-                                                    value={item.dataDoDisparo}
-                                                    readOnly={item.readOnly}
-                                                />
-                                            </div>
-
-
-                                            <div className="col-sm col-md-6 col-lg-6 mt-1">
-                                                <strong className="text-secondary">
-                                                    <i className="bi bi-calendar-plus me-2"></i>
-                                                </strong>
-                                                <InputComponente
-                                                    label="Criado em"
-                                                    tipo="date"
-                                                    required
-                                                    className="d-block mt-1 w-100"
-                                                    id="dataCriacao"
-                                                    placeholder="Criado Em"
-                                                    onchange={function (e) {
-
-                                                    }
-                                                    }
-                                                    value={item.dataCriacao.toString().split("T")[0]}
-                                                    readOnly={true}
-                                                />
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                {/* Footer */}
-                                <div className="card-footer bg-light border-0 d-flex justify-content-end gap-2">
-                                    {
-                                        item.readOnly && <ButtonComponente
-                                            type="button"
-                                            className="btn-primary"
-                                            label=""
-                                            onClick={() => onChangeLembrete("readOnly", false, index)}
-                                            icon="bi bi-pencil-square"
+                                        <InputComponente
+                                            label="Lembrete"
+                                            tipo="text"
+                                            required
+                                            className="d-block mt-2 w-100"
+                                            id="titulo"
+                                            placeholder="Titulo"
+                                            onchange={(e) =>
+                                                onChangeLembrete(e.target.id, e.target.value, index)
+                                            }
+                                            value={item.titulo}
+                                            readOnly={item.readOnly}
+                                            maxLength={25}
+                                            minLength={5}
                                         />
+                                    </div>
 
-                                    }
+                                    <div className="card-body p-3 bg-white">
+                                        <div className="container-fluid">
+                                            <div className="row">
+                                                <div className="col-sm col-md-12 col-lg-12">
+                                                    <strong className="text-primary">
+                                                        <i className="bi bi-card-text me-2"></i>
+                                                    </strong>
 
-                                    {
-                                        !item.readOnly && (
-                                            <ButtonComponente
-                                                type="submit"
+                                                    <TextAreaComponent
+                                                        label="Descrição"
+                                                        className=""
+                                                        id="descricao"
+                                                        onchange={(e) =>
+                                                            onChangeLembrete(e.target.id, e.target.value, index)
+                                                        }
+                                                        rows={2}
+                                                        value={item.descricao}
+                                                        disabled={item.readOnly}
+                                                        maxLength={50}
+                                                        minLength={10}
+                                                        required
+                                                    />
+                                                </div>
+
+                                                <div className="col-sm col-md-6 col-lg-12 mt-1">
+                                                    <strong className="text-info">
+                                                        <i className="bi bi-arrow-repeat me-2"></i>
+                                                    </strong>
+                                                    <SelectComponente
+                                                        label="Recorrência"
+                                                        id="recorrencia"
+                                                        required
+                                                        onchange={
+                                                            (e) =>
+                                                                onChangeLembrete(e.target.id, e.target.value, index)
+                                                        }
+                                                        options={[
+                                                            {
+                                                                label: "Unico", value: "Unico",
+                                                            },
+                                                            {
+                                                                label: "Diario", value: "Diario",
+                                                            }
+                                                        ]}
+                                                        disabled={item.readOnly}
+                                                        value={item.recorrencia}
+                                                    />
+                                                    <small className="d-block text-center text-color-icon">{item.recorrencia == "Diario" ? "O lembrete será Disparado todos os dias na Data Programada." : ""}</small>
+                                                </div>
+
+                                                <div className="col-sm col-md-6 col-lg-6 mt-1">
+                                                    <strong className="text-warning">
+                                                        <i className="bi bi-alarm me-2"></i>
+                                                    </strong>
+                                                    <InputComponente
+                                                        label="Data de Disparo"
+                                                        tipo="datetime-local"
+                                                        required
+                                                        className="d-block mt-1 w-100"
+                                                        id="dataDoDisparo"
+                                                        placeholder="Data de Disparo"
+                                                        onchange={(e) =>
+                                                            onChangeLembrete(e.target.id, e.target.value, index)
+                                                        }
+                                                        value={item.dataDoDisparo}
+                                                        readOnly={item.readOnly}
+                                                    />
+                                                </div>
+
+
+                                                <div className="col-sm col-md-6 col-lg-6 mt-1">
+                                                    <strong className="text-secondary">
+                                                        <i className="bi bi-calendar-plus me-2"></i>
+                                                    </strong>
+                                                    <InputComponente
+                                                        label="Criado em"
+                                                        tipo="date"
+                                                        required
+                                                        className="d-block mt-1 w-100"
+                                                        id="dataCriacao"
+                                                        placeholder="Criado Em"
+                                                        onchange={function (e) {
+
+                                                        }
+                                                        }
+                                                        value={item.dataCriacao.toString().split("T")[0]}
+                                                        readOnly={true}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    {/* Footer */}
+                                    <div className="card-footer bg-light border-0 d-flex justify-content-end gap-2">
+                                        {
+                                            item.readOnly && <ButtonComponente
+                                                type="button"
                                                 className="btn-primary"
                                                 label=""
-                                                icon="bi bi-floppy-fill"
+                                                onClick={() => onChangeLembrete("readOnly", false, index)}
+                                                icon="bi bi-pencil-square"
                                             />
-                                        )
-                                    }
+
+                                        }
+
+                                        {
+                                            !item.readOnly && (
+                                                <ButtonComponente
+                                                    type="submit"
+                                                    className="btn-primary"
+                                                    label=""
+                                                    icon="bi bi-floppy-fill"
+                                                />
+                                            )
+                                        }
 
 
-                                    <ButtonComponente
-                                        type="button"
-                                        className="btn-danger"
-                                        label=""
-                                        onClick={function () {
+                                        <ButtonComponente
+                                            type="button"
+                                            className="btn-danger"
+                                            label=""
+                                            onClick={function () {
 
-                                            setLembreteRemover(item)
-                                            setShowModalConfirmacao(true)
-                                        }}
-                                        icon="bi bi-trash"
-                                    />
+                                                setLembreteRemover(item)
+                                                setShowModalConfirmacao(true)
+                                            }}
+                                            icon="bi bi-trash"
+                                        />
+
+                                    </div>
 
                                 </div>
-
                             </div>
-                        </div>
-                    </form>
-                ))}
-            </div>
+                        </form>
+                    </div>
+                ))
+                }
+            </div >
             <ModalLoad carregando={carregando.carregando} mensagem={carregando.mensagem} />
             <ModalConfirmacao
                 mostrar={showModalConfirmacao}
@@ -328,6 +329,6 @@ export function Lembrete({ lembretesIniciais, carregarLembretes }: { lembretesIn
                     setShowModalConfirmacao(false)
                 }}
             />
-        </div>
+        </div >
     )
 }

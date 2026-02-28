@@ -5,9 +5,10 @@ export interface LembreteType {
     titulo: string
     dataCriacao: string
     descricao: string
-    dataDoDisparo: string // formato: "YYYY-MM-DDTHH:mm"
-    recorrencia: "Semanal" | "Diario" | "Mensal" | "Anual" | "Unico"
+    dataDoDisparo: string // formato: "YYYY-MM-DD"
+    recorrencia: "Diario" | "Unico"
     readOnly: boolean
+    disparado: boolean
 }
 
 export interface ButtonComponentType {
