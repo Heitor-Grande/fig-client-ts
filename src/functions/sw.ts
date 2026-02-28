@@ -6,7 +6,7 @@ export async function swInstall() {
         //cria o serviceWorker no navegador
         if ('serviceWorker' in navigator) {
 
-            await navigator.serviceWorker.register("/swV1.js")
+            await navigator.serviceWorker.register("/swV4.js")
         }
     } catch (error) {
 
