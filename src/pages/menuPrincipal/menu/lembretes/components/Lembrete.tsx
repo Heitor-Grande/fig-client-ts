@@ -143,12 +143,12 @@ export function Lembrete({ lembretesIniciais, carregarLembretes }: { lembretesIn
         <div className="col-sm col-md-12 col-lg-12">
             <div className="row">
                 {lembretes.map((item, index) => (
-                    <div className="col-sm-6 col-md-4 col-lg-4 mt-2">
+                    <div className="col-sm-6 col-md-4 col-lg-4 mt-2" key={index}>
                         <form onSubmit={function (e) {
                             e.preventDefault()
                             atualizarLembrete(item, index)
                         }}>
-                            <div className="col-md-12 col-lg-12" key={index}>
+                            <div className="col-md-12 col-lg-12">
                                 <div className="card shadow border-0 h-100 bg-light">
 
                                     {/* Header */}

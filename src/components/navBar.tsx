@@ -11,7 +11,7 @@ function NavBar() {
     const [showModalCarregando, setShowModalCarregando] = useState(false)
     const navigate = useNavigate()
     function VerificaLogin() {
-        setShowModalCarregando(true)
+
         const tokenLogin = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
         const id_usuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
         axios.get(`${process.env.REACT_APP_API_URL}/verifica/login/usuario/${id_usuario}`, {
@@ -19,8 +19,9 @@ function NavBar() {
                 Authorization: tokenLogin
             }
         }).then(function (resposta) {
-            setShowModalCarregando(false)
+
         }).catch(function (erro) {
+            LogoOff()
             navigate("/")
         })
     }
@@ -30,7 +31,7 @@ function NavBar() {
     })
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
     function CarregarInformacoesUsuario() {
-        setShowModalCarregando(true)
+
         const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
         axios.get(`${process.env.REACT_APP_API_URL}/usuario/carregar/usuario/${idUsuario}`, {
             headers: {
@@ -43,16 +44,22 @@ function NavBar() {
                 nome: usuario.nome,
                 avatar: usuario.avatar
             })
-            setShowModalCarregando(false)
+
         }).catch(function (erro) {
+
             toast.error(erro.response.data.message || erro.message)
-            setShowModalCarregando(false)
         })
     }
     useEffect(function () {
 
-        VerificaLogin()
-        CarregarInformacoesUsuario()
+        async function carregar() {
+            setShowModalCarregando(true)
+            VerificaLogin()
+            CarregarInformacoesUsuario()
+            setShowModalCarregando(false)
+        }
+
+        carregar()
     }, [])
 
     function LogoOff() {
@@ -66,7 +73,7 @@ function NavBar() {
 
     return (
         <div className="App mb-3">
-            <ModalLoad carregando={showModalCarregando} mensagem="Carregando..." />
+            <ModalLoad carregando={showModalCarregando} mensagem="Carregando Informações de Login..." />
             <nav className="navbar navbar-expand-lg navbar-light bg-primary">
                 <div className="container-fluid">
                     <a className="border-none px-3 text-white" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
@@ -94,7 +101,7 @@ function NavBar() {
                     <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/principal"><i className="bi bi-clipboard2-data me-2"></i>Dashboard</a>
                     <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/controle/caixa"><i className="bi bi-coin me-2"></i>Caixa</a>
                     <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/meus/arquivos"><i className="bi bi-folder-fill me-2"></i>Arquivos</a>
-                    <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/meus/lembretes"><i className="bi bi-journal me-2"></i>Agenda</a>
+                    <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/minha/agenda"><i className="bi bi-journal me-2"></i>Agenda</a>
                     <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/home/meus/lembretes"><i className="bi bi-bell me-2"></i>Lembretes</a>
                     <hr />
                     <a className="rounded-0 btn hoverLink d-block ps-3 fs-5 border-0 link-offset-2 link-underline link-underline-opacity-0" href="/" onClick={LogoOff}><i className="bi bi-box-arrow-left me-2"></i>Sair</a>
