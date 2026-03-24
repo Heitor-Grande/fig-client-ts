@@ -62,33 +62,74 @@ export default function FormAgenda({ show, onClose, dia, mes, ano }: FormAgendaP
                 <div className="container-fluid">
                     <div className="row">
                         {horas.map((hora) => (
-                            <div
-                                key={hora}
-                                className="border-bottom mb-1 py-1 text-center border-3 rounded bg-primary text-white"
-                                style={{
-                                    cursor: "pointer"
-                                }}
-                                onClick={function () {
+                            <div className="px-1 col-lg-2 col-md-3 col-sm">
+                                <div
+                                    key={hora}
+                                    className={`border-bottom mb-1 py-1 text-center border-3 rounded 
+                                        ${new Date(
+                                        Number(ano),
+                                        Number(mes) - 1, // mês começa do 0
+                                        Number(dia),
+                                        Number(hora),
+                                        0, // minutos
+                                        0  // segundos
+                                    ) <= new Date() ?
+                                            ' bg-secondary ' : ' bg-primary '} text-white`}
+                                    style={{
+                                        cursor: "pointer"
+                                    }}
+                                    onClick={function () {
 
-                                    setFormDiaProps(function (form) {
-                                        return {
-                                            ...form,
-                                            horaInicio: String(hora).padStart(2, "0") + ":00",
-                                            horaFim: String((hora < 23 ? hora + 1 : '0')).padStart(2, "0") + ":00",
-                                            show: true
+                                        const dataSelecionada = new Date(
+                                            Number(ano),
+                                            Number(mes) - 1, // mês começa do 0
+                                            Number(dia),
+                                            Number(hora),
+                                            0, // minutos
+                                            0  // segundos
+                                        )
+
+                                        const agora = new Date()
+
+                                        const indisponivel = dataSelecionada <= agora
+                                        if (indisponivel) {
+
+                                            toast.info("Horário não Disponível.")
+                                            return
                                         }
-                                    })
-                                }}
-                            >
-                                {/* Área clicável / eventos */}
-                                <div className="col-sm col-md-12 col-lg-12">
-                                    <div
-                                        className="w-100"
-                                    >
-                                        {String(hora).padStart(2, '0')}:00   DISPONÍVEL
-                                    </div>
-                                </div>
 
+                                        setFormDiaProps(function (form) {
+                                            return {
+                                                ...form,
+                                                horaInicio: String(hora).padStart(2, "0") + ":00",
+                                                horaFim: String((hora < 23 ? hora + 1 : '0')).padStart(2, "0") + ":00",
+                                                show: true
+                                            }
+                                        })
+                                    }}
+                                >
+                                    {/* Área clicável / eventos */}
+                                    <div className="col-sm col-md-12 col-lg-12">
+                                        <div
+                                            className="w-100"
+                                        >
+
+                                            <small>
+                                                {String(hora).padStart(2, '0')}:00 {
+                                                    new Date(
+                                                        Number(ano),
+                                                        Number(mes) - 1, // mês começa do 0
+                                                        Number(dia),
+                                                        Number(hora),
+                                                        0, // minutos
+                                                        0  // segundos
+                                                    ) <= new Date() ? ' Indisponível' : ' Disponível'
+                                                }
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -105,6 +146,6 @@ export default function FormAgenda({ show, onClose, dia, mes, ano }: FormAgendaP
                     setFormDiaProps(formDiaInicial)
                 }}
             />
-        </Modal>
+        </Modal >
     )
 }

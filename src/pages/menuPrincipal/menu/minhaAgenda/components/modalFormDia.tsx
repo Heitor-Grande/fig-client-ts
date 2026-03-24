@@ -121,7 +121,7 @@ export default function ModalFormDia({ show, horaInicio, horaFim, dia, mes, ano,
     }
 
     return (
-        <Modal show={show} onHide={onClose} size="lg" centered>
+        <Modal show={show} onHide={onClose} size="lg">
             <Modal.Header closeButton>
                 {diaAgenda.dia}/{diaAgenda.mes}/{diaAgenda.ano} {diaAgenda.horaInicio} às {diaAgenda.horaFim}
             </Modal.Header>
@@ -168,7 +168,7 @@ export default function ModalFormDia({ show, horaInicio, horaFim, dia, mes, ano,
                                 <InputComponente
                                     label="E-mail para Contato"
                                     tipo="email"
-                                    required
+                                    required={false}
                                     className=""
                                     id="email"
                                     placeholder="E-mail para contato"
