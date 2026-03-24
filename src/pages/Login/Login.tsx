@@ -199,7 +199,6 @@ function Login() {
                         <div className="card">
                             <div className="card-body">
                                 <ul>
-                                    <li>Lembretes</li>
                                     <li>Agenda</li>
                                 </ul>
                             </div>

@@ -25,3 +25,18 @@ export interface typeModalLoad {
 
     carregando: boolean, mensagem: string
 }
+
+export interface diaAgendaType {
+    id: string;
+    horaInicio: string;
+    horaFim: string;
+    dia: string;
+    mes: string;
+    ano: string;
+    nomeCompleto: string;
+    celular: string;
+    email: string
+    cpf: string
+    observacao: string
+    status: string
+}

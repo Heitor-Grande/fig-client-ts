@@ -1,9 +1,19 @@
 import { useState } from "react"
 import "./css/minhaAgenda.css"
+import FormAgenda from "./components/modalFormAgenda"
 
 export default function MinhaAgenda() {
 
     const hoje = new Date()
+
+    const formAgendaInicial = {
+        show: false,
+        dia: "",
+        mes: "",
+        ano: ""
+    }
+
+    const [formAgenda, setFormAgenda] = useState(formAgendaInicial)
 
     const [mesSelecionado, setMesSelecionado] = useState(
         `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}`
@@ -25,6 +35,7 @@ export default function MinhaAgenda() {
         for (let dia = 1; dia <= totalDias; dia++) {
             dias.push(dia)
         }
+
 
         return dias
     }
@@ -61,7 +72,22 @@ export default function MinhaAgenda() {
                     <div
                         key={index}
                         className="dia"
-                        onClick={() => dia && console.log(dia)}
+                        onClick={function () {
+
+                            setFormAgenda(function (form) {
+
+                                const mes = mesSelecionado.split("-")[1]
+                                const ano = mesSelecionado.split("-")[0]
+
+                                return {
+                                    ...form,
+                                    show: true,
+                                    dia: String(dia).padStart(2, "0"),
+                                    mes: mes,
+                                    ano: ano
+                                }
+                            })
+                        }}
                     >
                         <label className="text-color-icon">
                             {dia}
@@ -74,6 +100,15 @@ export default function MinhaAgenda() {
 
             </div>
 
+            <FormAgenda
+                show={formAgenda.show}
+                dia={formAgenda.dia}
+                mes={formAgenda.mes}
+                ano={formAgenda.ano}
+                onClose={function () {
+                    setFormAgenda(formAgendaInicial)
+                }}
+            />
         </div>
     )
 }
