@@ -53,7 +53,7 @@ function MinhaConta() {
         }
     }
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
-    
+
     const [showModalCarregando, setShowModalCarregando] = useState(false)
     function CarregarInformacoesUsuario() {
         setShowModalCarregando(true)
@@ -105,7 +105,7 @@ function MinhaConta() {
         try {
             const permission = await Notification.requestPermission()
 
-            console.log("Permissão Solicitada: " + permission)
+            //console.log("Permissão Solicitada: " + permission)
 
             if (permission == "granted") {
 
@@ -115,7 +115,7 @@ function MinhaConta() {
             setStatusNotificacao(permission)
         } catch (error) {
 
-            console.log(error)
+            //console.log(error)
         }
     }
 
@@ -124,7 +124,7 @@ function MinhaConta() {
         try {
             const permission = await Notification.requestPermission()
 
-            console.log("Permissão Solicitada: " + permission)
+            //console.log("Permissão Solicitada: " + permission)
 
             if (permission == "default" || permission == "denied" || permission == "granted") {
 
@@ -132,7 +132,7 @@ function MinhaConta() {
             }
         } catch (error) {
 
-            console.log("Erro ao solicitar permissão: " + error)
+            //console.log("Erro ao solicitar permissão: " + error)
         }
     }
 
@@ -147,7 +147,7 @@ function MinhaConta() {
                 <h4>Minha Conta</h4>
             </div>
             <div className="row">
-                <div className="col-sm col-md-12 col-lg-12">
+                <div className="col-sm col-md-12 col-lg-6">
                     <div className="card">
                         <form onSubmit={AtualizarConta}>
                             <div className="card-body">
@@ -165,7 +165,9 @@ function MinhaConta() {
                                                 </label>
                                             </Stack>
                                         </div>
-                                        <div className="col-sm col-md-6 col-lg-2">
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-sm col-md-6 col-lg-4">
                                             <InputComponente
                                                 label={"Data de Criação"}
                                                 tipo={"date"}
@@ -179,7 +181,7 @@ function MinhaConta() {
                                                 readOnly={true}
                                             />
                                         </div>
-                                        <div className="col-sm col-md-6 col-lg-2 pt-3">
+                                        <div className="col-sm col-md-6 col-lg-4 pt-3">
                                             <FormGroup>
                                                 <FormControlLabel
                                                     disabled
@@ -187,7 +189,7 @@ function MinhaConta() {
                                                     label={inputsConta.ativo == true ? "Ativo" : "Bloqueado"} />
                                             </FormGroup>
                                         </div>
-                                        <div className="col-sm col-md-6 col-lg-3 pt-3">
+                                        <div className="col-sm col-md-6 col-lg-4 pt-3">
                                             <ButtonComponente
                                                 type="button"
                                                 label={statusNotificacao == "granted" ? "Notificações Ativadas" : statusNotificacao == "denied" ? "Notificações Bloqueadas, necessário ação do Usuário." : statusNotificacao == "default" ? "Ativar Notificações" : "Carregando..."}
@@ -197,8 +199,6 @@ function MinhaConta() {
                                                 icon="bi bi-bell-fill"
                                             />
                                         </div>
-                                    </div>
-                                    <div className="row">
                                         <div className="col-sm col-md-6 col-lg-4 mt-2">
                                             <InputComponente
                                                 label={"Nome"}
