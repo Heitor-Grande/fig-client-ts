@@ -118,7 +118,7 @@ export default function FormAgenda({ show, onClose, dia, mes, ano }: FormAgendaP
                                         0, // minutos
                                         0  // segundos
                                     ) <= new Date() || hora.ocupado == true ?
-                                            hora.ocupado ? hora.status === "APROVADO" ? ' bg-success ' : " bg-warning " : ' bg-secondary ' : ' bg-primary '} text-white`}
+                                            hora.ocupado ? hora.status == "FINALIZADO" ? " bg-primary-subtle " : hora.status === "APROVADO" ? ' bg-success ' : " bg-warning " : ' bg-secondary ' : ' bg-primary '} text-white`}
                                     style={{
                                         cursor: "pointer"
                                     }}
@@ -167,7 +167,7 @@ export default function FormAgenda({ show, onClose, dia, mes, ano }: FormAgendaP
                                                         Number(hora.hora),
                                                         0, // minutos
                                                         0  // segundos
-                                                    ) <= new Date() || hora.ocupado == true ? hora.ocupado ? hora.status === "APROVADO" ? ' Aprovado' : " Pendente" : ' Indisponível' : ' Disponível'
+                                                    ) <= new Date() || hora.ocupado == true ? hora.ocupado ? hora.status == "FINALIZADO" ? " Finalizado " : hora.status === "APROVADO" ? ' Aprovado' : " Pendente" : ' Indisponível' : ' Disponível'
                                                 }
                                             </small>
                                         </div>

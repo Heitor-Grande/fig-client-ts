@@ -16,7 +16,7 @@ function MeusArquivos() {
 
     const [showModalLoading, setShowModalLoading] = useState(false)
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
-    const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
+  
     function AbrirInputFile() {
         const inputAnexar = document.querySelector("#anexarArquivo") as HTMLInputElement
         inputAnexar.click()
@@ -28,7 +28,7 @@ function MeusArquivos() {
             const dados = {
                 arquivosImportados: arrayDeFilesEmBase64
             }
-            axios.post(`${process.env.REACT_APP_API_URL}/meus-arquivos/novo/upload/arquivos/${idUsuario}`, dados, {
+            axios.post(`${process.env.REACT_APP_API_URL}/meus-arquivos/novo/upload/arquivos`, dados, {
                 headers: {
                     Authorization: token
                 }
@@ -46,7 +46,7 @@ function MeusArquivos() {
     }
     function carregarArquivos() {
         setShowModalLoading(true)
-        axios.get(`${process.env.REACT_APP_API_URL}/meus-arquivos/carregar/meus/uploads/${idUsuario}`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/meus-arquivos/carregar/meus/uploads`, {
             headers: {
                 Authorization: token
             }
@@ -65,7 +65,7 @@ function MeusArquivos() {
     }
     function DeletarArquivo(arquivo: any) {
         setShowModalLoading(true)
-        axios.delete(`${process.env.REACT_APP_API_URL}/meus-arquivos/deletar/arquivo/usuario/${idUsuario}/${arquivo.id}`, {
+        axios.delete(`${process.env.REACT_APP_API_URL}/meus-arquivos/deletar/arquivo/usuario/${arquivo.id}`, {
             headers: {
                 Authorization: token
             }

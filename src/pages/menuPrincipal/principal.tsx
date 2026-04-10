@@ -8,7 +8,6 @@ import ButtonComponente from "../../components/buttonComponent/buttonComponent";
 function Principal() {
     
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
-    const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
     const [showModalLoading, setShowModalLoading] = useState(false)
     const [dataInicio, setDataInicio] = useState(new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0])//seta no primeiro dia do mes corrente
     function SetValorDataInico(e: React.ChangeEvent<HTMLInputElement>) {
@@ -31,7 +30,7 @@ function Principal() {
             dataInicio: dataInicio,
             dataFim: dataFim
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/dashboard/carregar/dashboard/principal/${idUsuario}`, dados, {
+        axios.post(`${process.env.REACT_APP_API_URL}/dashboard/carregar/dashboard/principal`, dados, {
             headers: {
                 Authorization: token
             }

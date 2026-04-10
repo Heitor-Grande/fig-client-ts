@@ -6,12 +6,10 @@ import formatarDinheiro from "../../../../functions/formatarDinheiro"
 import ModalLoad from "../../../../components/ModalLoad"
 import axios from "axios"
 import { toast } from "react-toastify"
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import ModalConfirmacao from "../../../../components/modalConfirmacao/modalConfirmacao"
 import GerarBase64 from "../../../../functions/gerarBase64"
 import VisualizarAnexos from "../../../../components/visualizarAnexoComponente/visualizarAnexos"
 import ModalOpcoes from "../../../../components/modalOpcoes/modalOpcoes"
-import DownloadIcon from '@mui/icons-material/Download';
 import ButtonComponente from "../../../../components/buttonComponent/buttonComponent"
 function FormularioControleCaixa() {
     const params = useParams()
@@ -56,7 +54,6 @@ function FormularioControleCaixa() {
         setShowModalLoading(true)
         const dados = {
             inputsMovimento: inputsMovimento,
-            id_usuario: idUsuario,
             arquivosAnexados: arquivosAnexados
         }
         axios.post(`${process.env.REACT_APP_API_URL}/controle-caixa/criar/novo/movimento`, dados, {
@@ -76,7 +73,7 @@ function FormularioControleCaixa() {
     }
     function CarregarMovimento() {
         setShowModalLoading(true)
-        axios.get(`${process.env.REACT_APP_API_URL}/controle-caixa/carregar/detalhes/movimento/${idUsuario}/${params.id}`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/controle-caixa/carregar/detalhes/movimento/${params.id}`, {
             headers: {
                 Authorization: token
             }
@@ -103,7 +100,7 @@ function FormularioControleCaixa() {
             inputsMovimento: inputsMovimento,
             id_usuario: idUsuario
         }
-        axios.put(`${process.env.REACT_APP_API_URL}/controle-caixa/atualizar/movimento/${idUsuario}/${params.id}`, dados, {
+        axios.put(`${process.env.REACT_APP_API_URL}/controle-caixa/atualizar/movimento/${params.id}`, dados, {
             headers: {
                 Authorization: token
             }
@@ -139,7 +136,7 @@ function FormularioControleCaixa() {
     function ExcluirMovimento() {
         manipularModalExcluir()
         setShowModalLoading(true)
-        axios.delete(`${process.env.REACT_APP_API_URL}/controle-caixa/excluir/movimento/${idUsuario}/${params.id}`, {
+        axios.delete(`${process.env.REACT_APP_API_URL}/controle-caixa/excluir/movimento/${params.id}`, {
             headers: {
                 Authorization: token
             }
@@ -189,7 +186,7 @@ function FormularioControleCaixa() {
         const dados = {
             arquivosAnexados: arrayDeFiles
         }
-        axios.put(`${process.env.REACT_APP_API_URL}/controle-caixa/upload/arquivo/movimento/${params.id}/${idUsuario}`, dados, {
+        axios.put(`${process.env.REACT_APP_API_URL}/controle-caixa/upload/arquivo/movimento/${params.id}`, dados, {
             headers: {
                 Authorization: token
             }
@@ -215,7 +212,7 @@ function FormularioControleCaixa() {
         }
         else if (params.acao == "editar" && params.id != "0") {
             setShowModalLoading(true)
-            axios.delete(`${process.env.REACT_APP_API_URL}/controle-caixa/deletar/arquivo/movimento/${params.id}/${anexo.id}/${idUsuario}`, {
+            axios.delete(`${process.env.REACT_APP_API_URL}/controle-caixa/deletar/arquivo/movimento/${params.id}/${anexo.id}`, {
                 headers: {
                     Authorization: token
                 }

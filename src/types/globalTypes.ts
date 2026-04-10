@@ -1,7 +1,6 @@
 export interface LembreteType {
 
     id: string
-    idusuario: string
     titulo: string
     dataCriacao: string
     descricao: string

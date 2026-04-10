@@ -56,14 +56,13 @@ function Login() {
             }
         }).then(async function (resposta) {
             const tokenLogin = resposta.data.tokenLogin
-            const usuario = resposta.data.usuario
+
             if (inputsLogin.salvarLogin) {
                 localStorage.setItem("tokenLogin", tokenLogin)
-                localStorage.setItem("idUsuario", usuario.id_usuario)
+
             }
             else {
                 sessionStorage.setItem("tokenLogin", tokenLogin)
-                sessionStorage.setItem("idUsuario", usuario.id_usuario)
             }
 
             await swInstall()

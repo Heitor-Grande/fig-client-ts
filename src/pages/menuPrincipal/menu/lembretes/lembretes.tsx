@@ -9,13 +9,11 @@ import axios from "axios"
 export function Lembretes() {
 
     const token = (localStorage.getItem("tokenLogin") || sessionStorage.getItem("tokenLogin"))!
-    const idUsuario = (localStorage.getItem("idUsuario") || sessionStorage.getItem("idUsuario"))!
 
 
     const [listaDeLembretes, setListaDeLembretes] = useState<LembreteType[]>([])
 
     const lembreteInicial: LembreteType = {
-        idusuario: (localStorage.getItem("idUsuario") || sessionStorage.getItem("idUsuario"))!,
         titulo: "",
         dataCriacao: "",
         descricao: "",
@@ -47,7 +45,6 @@ export function Lembretes() {
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/lembrete/criar`, novoLembrete, {
                 headers: {
                     Authorization: token,
-                    idUsuario: idUsuario
                 }
             })
 
@@ -60,7 +57,7 @@ export function Lembretes() {
                 }
             })
 
-            await carregarLembretes(idUsuario, token)
+            await carregarLembretes(token)
 
             setNovoLembrete(lembreteInicial)
             toast.success(response.data.msg)
@@ -74,13 +71,13 @@ export function Lembretes() {
                 }
             })
 
-            await carregarLembretes(idUsuario, token)
+            await carregarLembretes(token)
 
             toast.error(error.response.data.message || error.message)
         }
     }
 
-    async function carregarLembretes(idusuario: string, token: string) {
+    async function carregarLembretes(token: string) {
 
         try {
             setCarregando(function (carregando) {
@@ -90,10 +87,9 @@ export function Lembretes() {
                 }
             })
 
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/lembrete/carregar/todos/lembretes/${idusuario}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/lembrete/carregar/todos/lembretes`, {
                 headers: {
                     Authorization: token,
-                    idUsuario: idusuario
                 }
             })
 
@@ -121,7 +117,7 @@ export function Lembretes() {
     useEffect(function () {
 
         async function carregar() {
-            await carregarLembretes(idUsuario, token)
+            await carregarLembretes(token)
         }
 
         carregar()
@@ -196,7 +192,7 @@ export function Lembretes() {
             {
                 listaDeLembretes.length > 0 && carregando.carregando != true && (
                     <Lembrete lembretesIniciais={listaDeLembretes} carregarLembretes={async function () {
-                        await carregarLembretes(idUsuario, token)
+                        await carregarLembretes(token)
                     }} />
                 )
             }

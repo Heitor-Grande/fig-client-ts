@@ -45,7 +45,6 @@ export function Lembrete({ lembretesIniciais, carregarLembretes }: { lembretesIn
     })
 
     const token = (localStorage.getItem("tokenLogin") || sessionStorage.getItem("tokenLogin"))!
-    const idUsuario = (localStorage.getItem("idUsuario") || sessionStorage.getItem("idUsuario"))!
 
     async function atualizarLembrete(lembrete: LembreteType, index: number) {
 
@@ -61,7 +60,6 @@ export function Lembrete({ lembretesIniciais, carregarLembretes }: { lembretesIn
             const response = await axios.put(`${process.env.REACT_APP_API_URL}/lembrete/atualizar/lembrete`, lembrete, {
                 headers: {
                     Authorization: token,
-                    idUsuario: idUsuario
                 }
             })
             onChangeLembrete("readOnly", true, index)
@@ -105,10 +103,9 @@ export function Lembrete({ lembretesIniciais, carregarLembretes }: { lembretesIn
                 }
             })
 
-            const response = await axios.delete(`${process.env.REACT_APP_API_URL}/lembrete/remover/${lembreteRemover?.id}/${lembreteRemover?.idusuario}`, {
+            const response = await axios.delete(`${process.env.REACT_APP_API_URL}/lembrete/remover/${lembreteRemover?.id}`, {
                 headers: {
                     Authorization: token,
-                    idUsuario: idUsuario
                 }
             })
 

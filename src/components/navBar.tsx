@@ -13,8 +13,7 @@ function NavBar() {
     function VerificaLogin() {
 
         const tokenLogin = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
-        const id_usuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
-        axios.get(`${process.env.REACT_APP_API_URL}/verifica/login/usuario/${id_usuario}`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/verifica/login/usuario`, {
             headers: {
                 Authorization: tokenLogin
             }
@@ -32,8 +31,7 @@ function NavBar() {
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
     function CarregarInformacoesUsuario() {
 
-        const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
-        axios.get(`${process.env.REACT_APP_API_URL}/usuario/carregar/usuario/${idUsuario}`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/usuario/carregar/usuario`, {
             headers: {
                 Authorization: token
             }
