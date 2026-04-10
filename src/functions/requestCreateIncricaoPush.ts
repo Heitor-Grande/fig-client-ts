@@ -5,8 +5,11 @@ export default async function createIncricaoPushUser(inscricaoUsuario: PushSubsc
     try {
 
         await axios.post(`${process.env.REACT_APP_API_URL}/inscricaopush/criar`, {
-            idusuario: sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario"),
             inscricao: inscricaoUsuario
+        }, {
+            headers: {
+                Authorization: sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
+            }
         })
 
     } catch (error) {
