@@ -28,16 +28,19 @@ function ModalConfirmacao({
                         <div className="col-sm col-md-12 col-lg-12 text-center">
                             <p>{mensagemPrincipal}</p>
                         </div>
-                        <div className="col-sm col-md-12 col-lg-12 text-center">
+                        <hr />
+                        <div className="col-sm col-md col-lg-6 mt-1">
                             <ButtonComponente
                                 type="button"
-                                className="btn-outline-primary me-2"
+                                className="btn-outline-primary w-100 me-2"
                                 label={labelBtnCancelar}
                                 onClick={acaoBtnCancelar}
                             />
+                        </div>
+                        <div className="col-sm col-md col-lg-6 mt-1">
                             <ButtonComponente
                                 type="button"
-                                className="btn-outline-danger"
+                                className="btn-outline-danger w-100"
                                 label={labelBtnConfirmar}
                                 onClick={acaoBtnConfirmar}
                             />

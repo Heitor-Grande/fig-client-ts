@@ -3,6 +3,9 @@ import { toast } from "react-toastify"
 import { Modal } from "react-bootstrap"
 import ModalFormDia from "./modalFormDia"
 import { useEffect, useState } from "react"
+import ModalLoad from "../../../../../components/ModalLoad"
+import gerarAgendaHorasDoDia from "../../../../../functions/gerarObjHorasAgendaDia"
+import { horaAgenda } from "../../../../../types/globalTypes"
 
 
 interface FormAgendaProps {
@@ -21,60 +24,101 @@ interface FormDiaProps {
     dia: string
     mes: string
     ano: string
+    idAgendamento: number | null | undefined
 }
 
 export default function FormAgenda({ show, onClose, dia, mes, ano }: FormAgendaProps) {
 
-    //horas do dia
-    const horas = Array.from({ length: 24 }, (_, i) => i)
+    const [horasAgenda, setHorasAgenda] = useState<horaAgenda[]>([])
 
-
-    useEffect(function () {
-        const formDiaInicial = {
-            show: false,
-            horaInicio: "",
-            horaFim: "",
-            dia: dia,
-            mes: mes,
-            ano: ano
-        }
-
-        setFormDiaProps(formDiaInicial)
-    }, [show])
-
-    const formDiaInicial = {
+    const formDiaInicial: FormDiaProps = {
         show: false,
         horaInicio: "",
         horaFim: "",
         dia: dia,
         mes: mes,
-        ano: ano
+        ano: ano,
+        idAgendamento: null
     }
 
     const [formDiaProps, setFormDiaProps] = useState<FormDiaProps>(formDiaInicial)
 
+    const [carregando, setCarregando] = useState(false)
+    const [mensagem, setMensagem] = useState("Carregando...")
+
+    async function carregarHorasAgendadas() {
+
+        try {
+            setMensagem("Carregando horas da Agenda...")
+            const token = (localStorage.getItem("tokenLogin") || sessionStorage.getItem("tokenLogin"))!
+            const idUsuario = (localStorage.getItem("idUsuario") || sessionStorage.getItem("idUsuario"))!
+
+            const dados = {
+                dia: formDiaInicial.dia,
+                mes: formDiaInicial.mes,
+                ano: formDiaInicial.ano
+            }
+
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/agenda/carregar/agendamentos/intervalo/dia`, dados, {
+                headers: {
+                    Authorization: token,
+                    idUsuario: idUsuario
+                }
+            })
+
+            //horas do dia
+            const horas = Array.from({ length: 24 }, (_, i) => i);
+            const horasAgendaFormatadas = gerarAgendaHorasDoDia(horas, response.data.dados)
+
+            setHorasAgenda(horasAgendaFormatadas)
+            setMensagem("Carregando...")
+        } catch (error: any) {
+
+            toast.error(error.response.data.message || error.message)
+            setMensagem("Carregando...")
+        }
+    }
+
+    useEffect(function () {
+
+        async function carregar() {
+
+            setCarregando(true)
+            await carregarHorasAgendadas()
+            setCarregando(false)
+        }
+
+        if (show) {
+
+            setFormDiaProps(formDiaInicial)
+            carregar()
+        }
+    }, [show])
     return (
-        <Modal show={show} onHide={onClose} size="xl">
+        <Modal show={show} onHide={function () {
+            onClose()
+            setHorasAgenda([])
+        }} size="xl">
             <Modal.Header closeButton>
                 Agenda - {formDiaProps.dia}/{formDiaProps.mes}/{formDiaProps.ano}
             </Modal.Header>
             <Modal.Body>
                 <div className="container-fluid">
                     <div className="row">
-                        {horas.map((hora) => (
+                        {horasAgenda.map((hora) => (
                             <div className="px-1 col-lg-2 col-md-3 col-sm">
                                 <div
-                                    key={hora}
+                                    key={hora.hora}
                                     className={`border-bottom mb-1 py-1 text-center border-3 rounded 
                                         ${new Date(
                                         Number(ano),
                                         Number(mes) - 1, // mês começa do 0
                                         Number(dia),
-                                        Number(hora),
+                                        Number(hora.hora),
                                         0, // minutos
                                         0  // segundos
-                                    ) <= new Date() ?
-                                            ' bg-secondary ' : ' bg-primary '} text-white`}
+                                    ) <= new Date() || hora.ocupado == true ?
+                                            hora.ocupado ? hora.status === "APROVADO" ? ' bg-success ' : " bg-warning " : ' bg-secondary ' : ' bg-primary '} text-white`}
                                     style={{
                                         cursor: "pointer"
                                     }}
@@ -84,7 +128,7 @@ export default function FormAgenda({ show, onClose, dia, mes, ano }: FormAgendaP
                                             Number(ano),
                                             Number(mes) - 1, // mês começa do 0
                                             Number(dia),
-                                            Number(hora),
+                                            Number(hora.hora),
                                             0, // minutos
                                             0  // segundos
                                         )
@@ -92,7 +136,7 @@ export default function FormAgenda({ show, onClose, dia, mes, ano }: FormAgendaP
                                         const agora = new Date()
 
                                         const indisponivel = dataSelecionada <= agora
-                                        if (indisponivel) {
+                                        if (indisponivel && hora.ocupado == false) {
 
                                             toast.info("Horário não Disponível.")
                                             return
@@ -101,9 +145,10 @@ export default function FormAgenda({ show, onClose, dia, mes, ano }: FormAgendaP
                                         setFormDiaProps(function (form) {
                                             return {
                                                 ...form,
-                                                horaInicio: String(hora).padStart(2, "0") + ":00",
-                                                horaFim: String((hora < 23 ? hora + 1 : '0')).padStart(2, "0") + ":00",
-                                                show: true
+                                                horaInicio: String(hora.hora).padStart(2, "0") + ":00",
+                                                horaFim: String((hora.hora < 23 ? hora.hora + 1 : '0')).padStart(2, "0") + ":00",
+                                                show: true,
+                                                idAgendamento: hora.idAgendamento
                                             }
                                         })
                                     }}
@@ -113,22 +158,20 @@ export default function FormAgenda({ show, onClose, dia, mes, ano }: FormAgendaP
                                         <div
                                             className="w-100"
                                         >
-
                                             <small>
-                                                {String(hora).padStart(2, '0')}:00 {
+                                                {String(hora.hora).padStart(2, '0')}:00 {
                                                     new Date(
                                                         Number(ano),
                                                         Number(mes) - 1, // mês começa do 0
                                                         Number(dia),
-                                                        Number(hora),
+                                                        Number(hora.hora),
                                                         0, // minutos
                                                         0  // segundos
-                                                    ) <= new Date() ? ' Indisponível' : ' Disponível'
+                                                    ) <= new Date() || hora.ocupado == true ? hora.ocupado ? hora.status === "APROVADO" ? ' Aprovado' : " Pendente" : ' Indisponível' : ' Disponível'
                                                 }
                                             </small>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         ))}
@@ -142,10 +185,14 @@ export default function FormAgenda({ show, onClose, dia, mes, ano }: FormAgendaP
                 dia={formDiaProps.dia}
                 mes={formDiaProps.mes}
                 ano={formDiaProps.ano}
+                idAgendamento={formDiaProps.idAgendamento}
                 onClose={function () {
                     setFormDiaProps(formDiaInicial)
+                    carregarHorasAgendadas()
                 }}
             />
+
+            <ModalLoad carregando={carregando} mensagem={mensagem} />
         </Modal >
     )
 }

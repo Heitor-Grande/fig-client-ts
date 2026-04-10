@@ -4,7 +4,7 @@ import { typeModalLoad } from '../types/globalTypes';
 
 function ModalLoad({ carregando, mensagem }: typeModalLoad) {
     return (
-        <Modal show={carregando} centered size="sm">
+        <Modal show={carregando} centered size="sm" backdrop="static" style={{ zIndex: 9999 }}>
             <Modal.Body>
                 <div className="d-flex justify-content-center">
                     <div className="spinner-border" role="status"></div>

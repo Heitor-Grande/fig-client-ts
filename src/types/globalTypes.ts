@@ -27,7 +27,7 @@ export interface typeModalLoad {
 }
 
 export interface diaAgendaType {
-    id: string;
+    id: number | null | undefined;
     horaInicio: string;
     horaFim: string;
     dia: string;
@@ -39,4 +39,18 @@ export interface diaAgendaType {
     cpf: string
     observacao: string
     status: string
+}
+
+export interface Agenda {
+    idagendamento: number;
+    data_inicio: string;
+    data_fim: string;
+    status: string
+}
+
+export interface horaAgenda {
+    hora: number;
+    ocupado: boolean;
+    status: string
+    idAgendamento: number | null;
 }
