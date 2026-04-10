@@ -393,7 +393,7 @@ export default function ModalFormDia({ show, horaInicio, horaFim, dia, mes, ano,
                     <div className="row">
                         <div className="col-sm col-md col-lg-6 mt-1">
                             {
-                                diaAgenda.id && (
+                                (diaAgenda.id && diaAgenda.status != "FINALIZADO") && (
                                     <ButtonComponente
                                         type="button"
                                         label="Recusar/Cancelar Agendamento"
