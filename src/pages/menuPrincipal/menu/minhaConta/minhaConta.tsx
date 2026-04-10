@@ -53,11 +53,11 @@ function MinhaConta() {
         }
     }
     const token = sessionStorage.getItem("tokenLogin") || localStorage.getItem("tokenLogin")
-    const idUsuario = sessionStorage.getItem("idUsuario") || localStorage.getItem("idUsuario")
+    
     const [showModalCarregando, setShowModalCarregando] = useState(false)
     function CarregarInformacoesUsuario() {
         setShowModalCarregando(true)
-        axios.get(`${process.env.REACT_APP_API_URL}/usuario/carregar/usuario/${idUsuario}`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/usuario/carregar/usuario`, {
             headers: {
                 Authorization: token
             }
@@ -83,7 +83,7 @@ function MinhaConta() {
         const dados = {
             inputsConta
         }
-        axios.put(`${process.env.REACT_APP_API_URL}/usuario/atualizar/minha/conta/${idUsuario}`, dados, {
+        axios.put(`${process.env.REACT_APP_API_URL}/usuario/atualizar/minha/conta`, dados, {
             headers: {
                 Authorization: token
             }
